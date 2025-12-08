@@ -53,7 +53,7 @@ CREATE TABLE `songs` (
     `portada` VARCHAR(255) COLLATE utf8_spanish_ci DEFAULT NULL,
     `genero` VARCHAR(64) COLLATE utf8_spanish_ci NOT NULL,
     `proposito` VARCHAR(64) COLLATE utf8_spanish_ci DEFAULT NULL,
-    `anio` INT(4) DEFAULT NULL,
+    `year` INT(4) DEFAULT NULL,
     `licencia` VARCHAR(64) COLLATE utf8_spanish_ci NOT NULL,
     `reproducciones` INT(11) NOT NULL DEFAULT 0,
     PRIMARY KEY (`id`)
