@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Login</title>
+    <link rel="stylesheet" href="CSS/style.css" />
+    <script src="js/passVisibility.js" defer></script>
+    <script src="js/errorLogin.js" defer></script>
+
+</head>
+<body>
+<nav class="navbar">
+    <div class="logo" bis_skin_checked="1">🎶 PlayListApp</div>
+</nav>
+<div id="login-container">
+    <h1>Iniciar Sesión</h1>
+    <form id="login-form" novalidate>
+        <label for="email">Email o Usuario</label>
+        <input type="text" id="email" placeholder="Email o Usuario" required>
+        <label for="password">Contraseña</label>
+        <div class="input-password">
+            <input type="password" id="password" placeholder="Contraseña" required>
+            <img
+                    src="img/icons/visibility_off.svg"
+                    id="togglePassword"
+                    class="toggle-password"
+                    alt="Mostrar contraseña"
+            >
+        </div>
+        <div class="remember-me">
+            <input type="checkbox" id="remember">
+            <label for="remember" class="slider"></label>
+            <span>Recordarme</span>
+        </div>
+        <button type="submit">Iniciar Sesión</button>
+    </form>
+    <p class="error-tag" id="login-error"></p>
+    <span class="link-form"><a href="">¿Olvidaste tu contraseña?</a></span>
+    <span class="link-form"><a href="">¿No tienes cuenta?</a></span>
+</div>
+</body>
+</html>

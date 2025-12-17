@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Login</title>
+    <link rel="stylesheet" href="CSS/style.css" />
+    <script src="js/passVisibility.js" defer></script>
+    <script src="js/errorRegister.js" defer></script>
+</head>
+<body>
+<nav class="navbar">
+    <div class="logo" bis_skin_checked="1">🎶 PlayListApp</div>
+</nav>
+<div id="register-container">
+    <h1>Registro</h1>
+    <form id="register-form" novalidate>
+        <label for="nombre">Nombre</label>
+        <input type="text" id="nombre" placeholder="Nombre" required>
+        <label for="apellidos">Apellidos</label>
+        <input type="text" id="apellidos" placeholder="Apellidos" required>
+        <label for="user">Usuario</label>
+        <input type="text" placeholder="Usuario" id="user" required>
+        <label for="email">Correo Electrónico</label>
+        <input type="text" id="email" placeholder="Correo Electrónico" required>
+
+        <label for="password">Contraseña</label>
+        <div class="input-password">
+            <input type="password" id="password" placeholder="Contraseña" required>
+            <img
+                    src="img/icons/visibility_off.svg"
+                    id="togglePassword"
+                    class="toggle-password"
+                    alt="Mostrar contraseña"
+            >
+        </div>
+        <button type="submit">Registrarse</button>
+    </form>
+    <p class="error-tag" id="register-error"></p>
+</div>
+
+</body>
+</html>

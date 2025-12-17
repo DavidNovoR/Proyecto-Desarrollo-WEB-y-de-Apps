@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Gestión de Playlists</title>
+  <link rel="stylesheet" href="CSS/style.css" />
+</head>
+<body>
+  <header>
+    <nav class="navbar">
+      <div class="logo">🎶 PlayListApp</div>
+      <input type="text" placeholder="Buscar canciones, artistas, álbumes..." class="search-bar" />
+      <button class="login-btn">Iniciar sesión</button>
+    </nav>
+  </header>
+
+  <aside class="sidebar">
+    <ul>
+      <li><img src="img/icons/home_icon.png" alt="icono de casa">  Inicio</li>
+      <li><img src="img/icons/search_icon.png" alt="icono de lupa de busqueda">  Explorar</li>
+      <li><img src="img/icons/library_music_icon.png" alt="icono de Playlists">  Mi Biblioteca</li>
+      <li><img src="img/icons/favorite_icon.png" alt="icono de favoritos">  Favoritos</li>
+      <li><img src="img/icons/analytics_icon.png" alt="icono de estadisticas">  Estadísticas</li>
+    </ul>
+  </aside>
+
+  <main>
+    <section class="quick-picks">
+      <div class="filters">
+        <button>🎧 Estudio</button>
+        <button>🔥 Energía</button>
+        <button>😌 Relax</button>
+        <button>🏋️‍♂️ Ejercicio</button>
+        <button>🎉 Fiesta</button>
+        <button>🧘 Meditación</button>
+      </div>
+      <h2>Top Playlists</h2>
+      <div class="song-list">
+        <div class="song-card">
+          <img src="cover.jpg" alt="Portada álbum" />
+          <div class="song-info">
+            <h3>Título de la canción</h3>
+            <p>Artista • Álbum</p>
+            <p>Reproducciones: 1234</p>
+          </div>
+          <button class="play-btn"><img src="img/icons/play_circle_icon.png" alt=""></button>
+        </div>
+      </div>
+ mm      <h2>Top Canciones</h2>
+      <div class="song-list">
+        <div class="song-card">
+          <img src="cover.jpg" alt="Portada álbum" />
+          <div class="song-info">
+            <h3>Título de la canción</h3>
+            <p>Artista • Álbum</p>
+            <p>Reproducciones: 1234</p>
+          </div>
+          <button class="play-btn"><img src="img/icons/play_circle_icon.png" alt=""></button>
+        </div>
+      </div>
+      <h2>Playlists Recomendadas</h2>
+      <div class="song-list">
+        <div class="song-card">
+          <img src="cover.jpg" alt="Portada álbum" />
+          <div class="song-info">
+            <h3>Título de la canción</h3>
+            <p>Artista • Álbum</p>
+            <p>Reproducciones: 1234</p>
+          </div>
+          <button class="play-btn"><img src="img/icons/play_circle_icon.png" alt=""></button>
+        </div>
+      </div>
+      <h2>Canciones Recomendadas</h2>
+      <div class="song-list">
+        <div class="song-card">
+          <img src="cover.jpg" alt="Portada álbum" />
+          <div class="song-info">
+            <h3>Título de la canción</h3>
+            <p>Artista • Álbum</p>
+            <p>Reproducciones: 1234</p>
+          </div>
+          <button class="play-btn"><img src="img/icons/play_circle_icon.png" alt=""></button>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <div class="audio-player">
+    <img src="img/cover.jpg" alt="Portada" class="player-cover">
+    <div class="player-info">
+      <h4>Porfa no te vayas</h4>
+      <p>Beret, Morat</p>
+    </div>
+    <div class="player-controls">
+      <button><img src="img/icons/previous_song_icon.png" alt=""></button>
+      <button><img src="img/icons/play_circle_icon.png" alt=""></button>
+      <button><img src="img/icons/next_song_icon.png" alt=""></button>
+    </div>
+    <div class="player-progress">
+      <span>3:17</span>
+      <input type="range" min="0" max="100" value="90">
+      <span>3:30</span>
+    </div>
+    <div class="player-volume">
+      <input type="range" min="0" max="100" value="80">
+    </div>
+  </div>
+
+  <footer>
+    <p>© 2025 PlayListApp - Proyecto académico</p>
+  </footer>
+</body>
+</html>

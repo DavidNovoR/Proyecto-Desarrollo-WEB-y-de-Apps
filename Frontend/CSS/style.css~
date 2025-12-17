@@ -383,6 +383,5 @@ footer {
 
 .error-tag {
     color: #ff4d4d;
-    font-size: 0.85rem;
     margin: 10px;
 }
