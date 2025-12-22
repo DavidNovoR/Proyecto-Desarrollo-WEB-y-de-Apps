@@ -13,9 +13,9 @@ START TRANSACTION;
 SET time_zone = "+00:00";
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
- /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
- /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
- /*!40101 SET NAMES utf8mb4 */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8mb4 */;
 
 --
 -- Base de datos: `playlists_db`
@@ -34,6 +34,7 @@ USE `playlists_db`;
 CREATE TABLE `users` (
     `id` INT(11) NOT NULL AUTO_INCREMENT,
     `usuario` VARCHAR(32) COLLATE utf8_spanish_ci NOT NULL UNIQUE,
+    `apellido` VARCHAR(50) COLLATE utf8_spanish_ci NOT NULL,
     `password` VARCHAR(255) COLLATE utf8_spanish_ci NOT NULL,
     `nombre` VARCHAR(64) COLLATE utf8_spanish_ci NOT NULL,
     `email` VARCHAR(64) COLLATE utf8_spanish_ci NOT NULL UNIQUE,
@@ -46,11 +47,13 @@ CREATE TABLE `users` (
 -- --------------------------------------------------------
 CREATE TABLE `songs` (
     `id` INT(11) NOT NULL AUTO_INCREMENT,
+    `api_id` VARCHAR(50) UNIQUE,
     `titulo` VARCHAR(128) COLLATE utf8_spanish_ci NOT NULL,
     `artista` VARCHAR(128) COLLATE utf8_spanish_ci NOT NULL,
     `album` VARCHAR(128) COLLATE utf8_spanish_ci DEFAULT NULL,
     `duracion` VARCHAR(8) COLLATE utf8_spanish_ci NOT NULL, -- formato mm:ss
     `portada` VARCHAR(255) COLLATE utf8_spanish_ci DEFAULT NULL,
+    `audio_url` VARCHAR(255) COLLATE utf8_spanish_ci NOT NULL,
     `genero` VARCHAR(64) COLLATE utf8_spanish_ci NOT NULL,
     `proposito` VARCHAR(64) COLLATE utf8_spanish_ci DEFAULT NULL,
     `year` INT(4) DEFAULT NULL,
