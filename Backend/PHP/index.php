@@ -12,6 +12,7 @@
 <body>
   <header>
     <nav class="navbar">
+      <button class="menu-toggle" onclick="toggleSidebar()">☰</button>
       <img class="logo_img" src="../../Frontend/img/logo_app.png" alt="">
       <div class="logo"> Musicfy</div>
       <input type="text" placeholder="Buscar canciones, artistas, álbumes..." class="search-bar" />
@@ -115,9 +116,9 @@
       <span id="current-time">0:00</span>
       <input type="range" id="progress-bar" min="0" max="100" value="0">
       <span id="total-time">0:00</span>
+      <div class="player-volume">
+        <input type="range" id="volume-bar" min="0" max="100" value="80">
     </div>
-    <div class="player-volume">
-      <input type="range" id="volume-bar" min="0" max="100" value="80">
     </div>
   </div>
 
@@ -125,6 +126,15 @@
     <p>© 2025-2026 PlayListApp - Proyecto académico</p>
   </footer>
 
+  <script>
+    function toggleSidebar() {
+        const sidebar = document.querySelector('.sidebar');
+        sidebar.classList.toggle('active');
+    }
+  </script>
+  <script> 
+    const songList = <?= json_encode($canciones, JSON_UNESCAPED_UNICODE) ?>; 
+  </script>
   <script src="../../Frontend/JS/player.js"></script>
   <script src="../../Frontend/JS/audio_line.js"></script>
   <script src="../../Frontend/JS/volume_line.js"></script>
