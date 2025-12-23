@@ -4,17 +4,21 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Musicfy - Crear Playlist</title>
-  <link rel="stylesheet" href="CSS/style4.css" />
+  <link rel="stylesheet" href="../CSS/style.css" />
+  <link rel="icon" type="image/x-icon" href="../img/logo_app.png">
 </head>
 
 <body>
   <!-- NAVBAR -->
   <header>
     <nav class="navbar">
-      <img class="logo_img" src="img/logo_app.png" alt="">
+      <button class="menu-toggle" onclick="toggleSidebar()">☰</button>
+      <a href="../../Backend/PHP/index.php">
+        <img class="logo_img" src="../img/logo_app.png" alt="">
+      </a>
       <div class="logo">Musicfy</div>
       <input type="text" placeholder="Buscar canciones, artistas, álbumes..." class="search-bar" />
-      <button class="search-btn"><img src="img/icons/search_icon.png"></button>
+      <button class="search-btn"><img src="../img/icons/search_icon.png"></button>
       <button class="login-btn">Iniciar sesión</button>
     </nav>
   </header>
@@ -22,10 +26,10 @@
   <!-- SIDEBAR -->
   <aside class="sidebar">
     <ul>
-      <li><img src="img/icons/home_icon.png"> Inicio</li>
-      <li><img src="img/icons/library_music_icon.png"> Mi Biblioteca</li>
-      <li><img src="img/icons/favorite_icon.png"> Favoritos</li>
-      <li><img src="img/icons/analytics_icon.png"> Estadísticas</li>
+      <li><a href="../../Backend/PHP/index.php"><img src="../img/icons/home_icon.png"> Inicio</a></li>
+      <li><img src="../img/icons/library_music_icon.png"> Mi Biblioteca</li>
+      <li><img src="../img/icons/favorite_icon.png"> Favoritos</li>
+      <li><a href="estadisticas.html"><img src="../img/icons/analytics_icon.png"> Estadísticas</a></li>
     </ul>
   </aside>
 
@@ -33,7 +37,7 @@
   <main>
     <section class="playlist-editor">
     <h2>Crear mi nueva Playlist</h2>
-    <form action="#" method="post" enctype="multipart/form-data">
+    <form id="formPlaylist" enctype="multipart/form-data">
         <div class="contenedor">
             <!-- Título -->
             <div class="bloques">
@@ -62,17 +66,33 @@
                 </select>
             </div>
 
+            <!-- Selección de canciones -->
+            <div class="bloques">
+                <label for="canciones">Añadir canciones a la Playlist:</label>
+                <select id="canciones" name="canciones[]" multiple size="6" class="selector-canciones">
+                    <!-- Aquí se llenará automáticamente -->
+                </select>
+                <small class="nota">Puedes seleccionar varias canciones manteniendo pulsado CTRL o SHIFT.</small>
+            </div>
+
             <!-- Botón de envío -->
             <button type="submit">Guardar Playlist</button>
         </div>
     </form>
     </section>
+  </main>
 
   <!-- FOOTER -->
   <footer>
     <p>© 2025-2026 PlayListApp - Proyecto académico</p>
   </footer>
-  </main>
 
+  <script>
+    function toggleSidebar() {
+      const sidebar = document.querySelector('.sidebar');
+      sidebar.classList.toggle('active');
+    }
+  </script>
+  <script src="../JS/canciones_crear_playlist.js"></script>
 </body>
 </html>

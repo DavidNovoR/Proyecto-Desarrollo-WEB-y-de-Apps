@@ -8,12 +8,15 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Musicfy - App Music</title>
   <link rel="stylesheet" href="../../Frontend/CSS/style.css" />
+  <link rel="icon" type="image/x-icon" href="../../Frontend/img/logo_app.png">
 </head>
 <body>
   <header>
     <nav class="navbar">
       <button class="menu-toggle" onclick="toggleSidebar()">☰</button>
-      <img class="logo_img" src="../../Frontend/img/logo_app.png" alt="">
+      <a href="index.php">
+        <img class="logo_img" src="../../Frontend/img/logo_app.png" alt="">
+      </a>
       <div class="logo"> Musicfy</div>
       <input type="text" placeholder="Buscar canciones, artistas, álbumes..." class="search-bar" />
       <button class="search-btn"><img src="../../Frontend/img/icons/search_icon.png" alt="icono de lupa de busqueda"></button>
@@ -23,10 +26,10 @@
 
   <aside class="sidebar">
     <ul>
-      <li><img src="../../Frontend/img/icons/home_icon.png" alt="icono de casa">  Inicio</li>
+      <li><a href="index.php"><img src="../../Frontend/img/icons/home_icon.png" alt="icono de casa">  Inicio</a></li>
       <li><img src="../../Frontend/img/icons/library_music_icon.png" alt="icono de Playlists">  Mi Biblioteca</li>
       <li><img src="../../Frontend/img/icons/favorite_icon.png" alt="icono de favoritos">  Favoritos</li>
-      <li><img src="../../Frontend/img/icons/analytics_icon.png" alt="icono de estadisticas">  Estadísticas</li>
+      <li><a href="../../Frontend/HTML/estadisticas.html"><img src="../../Frontend/img/icons/analytics_icon.png" alt="icono de estadisticas">  Estadísticas</a></li>
     </ul>
   </aside>
 
