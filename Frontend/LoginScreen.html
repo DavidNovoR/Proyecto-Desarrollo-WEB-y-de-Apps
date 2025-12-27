@@ -15,12 +15,12 @@
 </nav>
 <div id="login-container">
     <h1>Iniciar Sesión</h1>
-    <form id="login-form" novalidate>
+    <form id="login-form" method="POST" action="login.php" novalidate>
         <label for="email">Email o Usuario</label>
-        <input type="text" id="email" placeholder="Email o Usuario" required>
+        <input type="text" id="email" name="email" placeholder="Email o Usuario" required>
         <label for="password">Contraseña</label>
         <div class="input-password">
-            <input type="password" id="password" placeholder="Contraseña" required>
+            <input type="password" id="password" name="password" placeholder="Contraseña" required>
             <img
                     src="img/icons/visibility_off.svg"
                     id="togglePassword"
