@@ -1,5 +1,22 @@
 <?php
-    require_once(__DIR__ . '/songs.php');
+session_start();
+
+if (!isset($_SESSION["user_id"])) {
+    header("Location: ../../Frontend/HTML/LoginScreen.html");
+    exit;
+}
+
+require_once(__DIR__ . '/songs.php');
+$data = require(__DIR__ . '/get_playlists.php');
+$playlist = $data['playlists'];
+
+$mapa_generos = [];
+foreach ($playlist as $p) { 
+    $nombre = strtolower(trim($p['nombre'])); 
+    $mapa_generos[$nombre] = $p['id']; 
+}
+
+$playlists = array_slice($playlists, 0, 4);
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -14,20 +31,31 @@
   <header>
     <nav class="navbar">
       <button class="menu-toggle" onclick="toggleSidebar()">☰</button>
-      <a href="index.php">
+      <a href="index.php" class="logo-link">
         <img class="logo_img" src="../../Frontend/img/logo_app.png" alt="">
       </a>
       <div class="logo"> Musicfy</div>
-      <input type="text" placeholder="Buscar canciones, artistas, álbumes..." class="search-bar" />
-      <button class="search-btn"><img src="../../Frontend/img/icons/search_icon.png" alt="icono de lupa de busqueda"></button>
-      <button class="login-btn">Iniciar sesión</button>
+      <form action="busqueda.php" method="get" class="bloque-busqueda">
+        <input type="text" name="q" placeholder="Buscar canciones, artistas, álbumes..." class="search-bar" />
+        <button type="submit" class="search-btn">
+            <img src="../../Frontend/img/icons/search_icon.png" alt="icono de lupa de búsqueda">
+        </button>
+      </form>
+      <?php if (isset($_SESSION["usuario"])): ?>
+          <div class="user-info">
+              <span class="username">👤 <?= htmlspecialchars($_SESSION["usuario"]) ?></span>
+              <a href="logout.php" class="logout-btn">Cerrar sesión</a>
+          </div>
+      <?php else: ?>
+          <a href="../../Frontend/HTML/LoginScreen.html" class="login-btn">Iniciar sesión</a>
+      <?php endif; ?>
     </nav>
   </header>
 
   <aside class="sidebar">
     <ul>
       <li><a href="index.php"><img src="../../Frontend/img/icons/home_icon.png" alt="icono de casa">  Inicio</a></li>
-      <li><img src="../../Frontend/img/icons/library_music_icon.png" alt="icono de Playlists">  Mi Biblioteca</li>
+      <li><a href="library.php"><img src="../../Frontend/img/icons/library_music_icon.png" alt="icono de Playlists">  Mi Biblioteca</a></li>
       <li><img src="../../Frontend/img/icons/favorite_icon.png" alt="icono de favoritos">  Favoritos</li>
       <li><a href="../../Frontend/HTML/estadisticas.html"><img src="../../Frontend/img/icons/analytics_icon.png" alt="icono de estadisticas">  Estadísticas</a></li>
     </ul>
@@ -36,23 +64,24 @@
   <main>
     <section class="quick-picks">
       <div class="filters">
-        <button>🎧 Estudio</button>
-        <button>🔥 Energía</button>
-        <button>😌 Relax</button>
-        <button>🏋️‍♂️ Ejercicio</button>
-        <button>🎉 Fiesta</button>
-        <button>🧘 Meditación</button>
+        <a href="playlist.php?id=<?= $mapa_generos['pop'] ?? '#' ?>"><button>🎤 Pop</button></a>
+        <a href="playlist.php?id=<?= $mapa_generos['metal'] ?? '#' ?>"><button>🎸 Metal</button></a>
+        <a href="playlist.php?id=<?= $mapa_generos['rock'] ?? '#' ?>"><button>🤘 Rock</button></a>
+        <a href="playlist.php?id=<?= $mapa_generos['classical'] ?? '#' ?>"><button>🎻 Classical</button></a>
+        <a href="playlist.php?id=<?= $mapa_generos['choral'] ?? '#' ?>"><button>🎼 Choral</button></a>
+        <a href="playlist.php?id=<?= $mapa_generos['otros'] ?? '#' ?>"><button>🎶 Otros</button></a>
       </div>
       <h2>Top Playlists</h2>
-      <div class="song-list">
-        <div class="song-card">
-          <img src="cover.jpg" alt="Portada álbum" />
-          <div class="song-info">
-            <h3>Título de la canción</h3>
-            <p>Artista • Álbum</p>
-            <p>Reproducciones: 1234</p>
-          </div>
-        </div>
+      <div class="playlist-list">
+        <?php foreach ($playlists as $p): ?>
+          <a href="playlist.php?id=<?= $p['id'] ?>" class="song-card" style="text-decoration:none; color:white;">
+            <img src="../../Frontend/img/playlists/<?= htmlspecialchars($p['imagen']) ?>" alt="Portada playlist" />
+            <div class="song-info">
+              <h3><?= htmlspecialchars($p['nombre']) ?></h3>
+              <p><?= htmlspecialchars($p['descripcion']) ?></p>
+            </div>
+          </a>
+        <?php endforeach; ?>
       </div>
     <h2>Top Canciones</h2>
     <div class="song-list-large">
@@ -63,12 +92,16 @@
           </div>
           <div class="section titulo">
             <h3><?= htmlspecialchars($c['titulo']) ?></h3>
+            <p>Reproducciones: <?= htmlspecialchars($c['reproducciones'] ?? 0) ?></p>
           </div>
           <div class="section autor">
             <p><?= htmlspecialchars($c['artista']) ?> • <?= htmlspecialchars($c['album'] ?? 'Sin álbum') ?></p>
           </div>
           <div class="section duracion">
-            <span><?= htmlspecialchars($c['duracion'] ?? '0:00') ?></span>
+              <span><?= htmlspecialchars($c['duracion'] ?? '0:00') ?></span>
+              <button class="like-bt">
+                  <img src="../../Frontend/img/icons/like.png" alt="">
+              </button>
           </div>
         </div>
       <?php endforeach; ?>
@@ -76,7 +109,7 @@
       <h2>Playlists Recomendadas</h2>
       <div class="song-list">
         <div class="song-card">
-          <img src="cover.jpg" alt="Portada álbum" />
+          <img src="../../Frontend/img/logo_app.png" alt="Portada álbum" />
           <div class="song-info">
             <h3>Título de la canción</h3>
             <p>Artista • Álbum</p>
@@ -87,7 +120,7 @@
       <h2>Canciones Recomendadas</h2>
       <div class="song-list">
         <div class="song-card">
-          <img src="cover.jpg" alt="Portada álbum" />
+          <img src="../../Frontend/img/logo_app.png" alt="Portada álbum" />
           <div class="song-info">
             <h3>Título de la canción</h3>
             <p>Artista • Álbum</p>
@@ -99,10 +132,10 @@
   </main>
 
   <div class="audio-player">
-    <img src="img/cover.jpg" alt="Portada" class="player-cover">
+    <img src="../../Frontend/img/logo_app.png" alt="Portada" class="player-cover">
     <div class="player-info">
-      <h4>Trio HxC</h4>
-      <p>TriFace.Premiers Jets</p>
+      <h4></h4>
+      <p></p>
     </div>
     <div class="player-controls">
       <button class="player-prev">
@@ -121,7 +154,7 @@
       <span id="total-time">0:00</span>
       <div class="player-volume">
         <input type="range" id="volume-bar" min="0" max="100" value="80">
-    </div>
+      </div>
     </div>
   </div>
 
@@ -139,6 +172,7 @@
     const songList = <?= json_encode($canciones, JSON_UNESCAPED_UNICODE) ?>; 
   </script>
   <script src="../../Frontend/JS/player.js"></script>
+  <script src="../../Frontend/JS/like.js"></script>
   <script src="../../Frontend/JS/audio_line.js"></script>
   <script src="../../Frontend/JS/volume_line.js"></script>
 </body>
