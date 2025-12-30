@@ -1,5 +1,11 @@
 <?php
+session_start();
 require_once(__DIR__ . '/buscar.php');
+
+// Obtener canciones favoritas del usuario
+$stmtFav = $pdo->prepare("SELECT song_id FROM favorites WHERE user_id = ?");
+$stmtFav->execute([$_SESSION["user_id"]]);
+$favoritas = $stmtFav->fetchAll(PDO::FETCH_COLUMN);
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -24,15 +30,22 @@ require_once(__DIR__ . '/buscar.php');
                 <img src="../../Frontend/img/icons/search_icon.png" alt="icono de lupa de búsqueda">
             </button>
         </form>
-        <button class="login-btn">Iniciar sesión</button>
+        <?php if (isset($_SESSION["usuario"])): ?>
+            <div class="user-info">
+                <span class="username">👤 <?= htmlspecialchars($_SESSION["usuario"]) ?></span>
+                <a href="logout.php" class="logout-btn">Cerrar sesión</a>
+            </div>
+        <?php else: ?>
+            <a href="../../Frontend/HTML/LoginScreen.html" class="login-btn">Iniciar sesión</a>
+        <?php endif; ?>
         </nav>
     </header>
 
     <aside class="sidebar">
         <ul>
         <li><a href="index.php"><img src="../../Frontend/img/icons/home_icon.png" alt="icono de casa">  Inicio</a></li>
-        <li><img src="../../Frontend/img/icons/library_music_icon.png" alt="icono de Playlists">  Mi Biblioteca</li>
-        <li><img src="../../Frontend/img/icons/favorite_icon.png" alt="icono de favoritos">  Favoritos</li>
+        <li><a href="library.php"><img src="../../Frontend/img/icons/library_music_icon.png" alt="icono de Playlists">  Mi Biblioteca</a></li>
+        <li><a href="favoritos.php"><img src="../../Frontend/img/icons/favorite_icon.png" alt="icono de favoritos">  Favoritos</a></li>
         <li><a href="../../Frontend/HTML/estadisticas.html"><img src="../../Frontend/img/icons/analytics_icon.png" alt="icono de estadisticas">  Estadísticas</a></li>
         </ul>
     </aside>
@@ -55,8 +68,12 @@ require_once(__DIR__ . '/buscar.php');
             </div>
             <div class="section duracion">
               <span><?= htmlspecialchars($c['duracion'] ?? '0:00') ?></span>
-              <button class="like-bt">
-                <img src="../../Frontend/img/icons/like.png" alt="">
+              <?php
+              $esFavorita = in_array($c['id'], $favoritas);
+              $iconoLike = $esFavorita ? "like-red.png" : "like.png";
+              ?>
+              <button class="like-bt" data-song="<?= $c['id'] ?>">
+                  <img src="../../Frontend/img/icons/<?= $iconoLike ?>" alt="">
               </button>
             </div>
           </div>

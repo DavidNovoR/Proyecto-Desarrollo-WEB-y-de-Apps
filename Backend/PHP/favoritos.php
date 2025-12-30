@@ -1,24 +1,32 @@
 <?php
 session_start();
+require_once(__DIR__ . "/db.php");
 
-if (!isset($_SESSION["user_id"])) {
-    header("Location: ../../Frontend/HTML/login.html");
-    exit;
+// 1. Obtener IDs de canciones favoritas
+$stmtFav = $pdo->prepare("SELECT song_id FROM favorites WHERE user_id = ?");
+$stmtFav->execute([$_SESSION["user_id"]]);
+$fav_ids = $stmtFav->fetchAll(PDO::FETCH_COLUMN);
+
+// Si no hay favoritos, evitar error IN ()
+if (empty($fav_ids)) {
+    $canciones_fav = [];
+} else {
+    // 2. Obtener datos completos de las canciones favoritas
+    $in = implode(",", array_fill(0, count($fav_ids), "?"));
+    $stmtSongs = $pdo->prepare("SELECT * FROM songs WHERE id IN ($in)");
+    $stmtSongs->execute($fav_ids);
+    $canciones_fav = $stmtSongs->fetchAll(PDO::FETCH_ASSOC);
 }
-
-$data = require(__DIR__ . '/get_user_playlists.php');
-$playlists = $data['playlists'];
 ?>
 <!DOCTYPE html>
 <html lang="es">
     <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>Mi Biblioteca - Musicfy</title>
+        <title>Favoritos - Musicfy</title>
         <link rel="stylesheet" href="../../Frontend/CSS/style.css" />
         <link rel="icon" type="image/x-icon" href="../../Frontend/img/logo_app.png">
     </head>
-
     <body>
         <!-- NAVBAR -->
         <header>
@@ -58,17 +66,39 @@ $playlists = $data['playlists'];
         <!-- CONTENIDO PRINCIPAL -->
         <main>
             <section class="quick-picks">
-            <h2>Mis Playlists <a href="crear_playlist_html.php" class="btn-edit">Crear Playlist</a></h2>
-            <div class="playlist-list">
-                <?php foreach ($playlists as $p): ?>
-                <a href="playlist.php?id=<?= $p['id'] ?>&from=library" class="song-card">
-                    <img src="../../Frontend/img/playlists/<?= htmlspecialchars($p['imagen']) ?>" alt="Portada playlist" />
-                    <div class="song-info">
-                    <h3><?= htmlspecialchars($p['nombre']) ?></h3>
-                    <p><?= htmlspecialchars($p['descripcion']) ?></p>
-                    </div>
-                </a>
-                <?php endforeach; ?>
+            <h2>Mis Canciones Favoritas</h2>
+            <div class="song-list-large">
+                <?php if (empty($canciones_fav)): ?>
+                    <p>No tienes canciones favoritas todavía.</p>
+                <?php else: ?>
+                    <?php foreach ($canciones_fav as $c): ?>
+                        <div class="song-card-large" data-audio="<?= htmlspecialchars($c['audio_url']) ?>">
+                            <div class="section portada">
+                                <img src="<?= htmlspecialchars($c['portada']) ?>" alt="Portada álbum" />
+                            </div>
+
+                            <div class="section titulo">
+                                <h3><?= htmlspecialchars($c['titulo']) ?></h3>
+                            </div>
+
+                            <div class="section autor">
+                                <p><?= htmlspecialchars($c['artista']) ?> • <?= htmlspecialchars($c['album']) ?></p>
+                            </div>
+
+                            <div class="section duracion">
+                                <span><?= htmlspecialchars($c['duracion']) ?></span>
+
+                                <?php
+                                // Mantener corazón rojo si es favorita
+                                $iconoLike = "like-red.png";
+                                ?>
+                                <button class="like-bt" data-song="<?= $c['id'] ?>">
+                                    <img src="../../Frontend/img/icons/<?= $iconoLike ?>" alt="">
+                                </button>
+                            </div>
+                        </div>
+                    <?php endforeach; ?>
+                <?php endif; ?>
             </div>
             </section>
         </main>

@@ -8,6 +8,11 @@ if (!isset($_SESSION["user_id"])) {
 $data = require(__DIR__ . '/get_playlist.php');
 $playlist = $data['playlist'];
 $canciones = $data['canciones'];
+
+// Obtener canciones favoritas del usuario
+$stmtFav = $pdo->prepare("SELECT song_id FROM favorites WHERE user_id = ?");
+$stmtFav->execute([$_SESSION["user_id"]]);
+$favoritas = $stmtFav->fetchAll(PDO::FETCH_COLUMN);
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -50,7 +55,7 @@ $canciones = $data['canciones'];
     <ul>
       <li><a href="../../Backend/PHP/index.php"><img src="../../Frontend/img/icons/home_icon.png"> Inicio</a></li>
       <li><a href="library.php"><img src="../../Frontend/img/icons/library_music_icon.png"> Mi Biblioteca</a></li>
-      <li><img src="../../Frontend/img/icons/favorite_icon.png"> Favoritos</li>
+      <li><a href="favoritos.php"><img src="../../Frontend/img/icons/favorite_icon.png"> Favoritos</a></li>
       <li><a href="../../Frontend/HTML/estadisticas.html"><img src="../../Frontend/img/icons/analytics_icon.png"> Estadísticas</a></li>
     </ul>
   </aside>
@@ -91,8 +96,12 @@ $canciones = $data['canciones'];
             </div>
             <div class="section duracion">
               <span><?= htmlspecialchars($c['duracion'] ?? '0:00') ?></span>
-              <button class="like-bt">
-                  <img src="../../Frontend/img/icons/like.png" alt="">
+              <?php
+              $esFavorita = in_array($c['id'], $favoritas);
+              $iconoLike = $esFavorita ? "like-red.png" : "like.png";
+              ?>
+              <button class="like-bt" data-song="<?= $c['id'] ?>">
+                  <img src="../../Frontend/img/icons/<?= $iconoLike ?>" alt="">
               </button>
             </div>
           </div>
