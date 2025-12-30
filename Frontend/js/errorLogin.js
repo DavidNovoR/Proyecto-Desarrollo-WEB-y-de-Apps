@@ -1,24 +1,35 @@
-document.addEventListener("DOMContentLoaded", () => {
-    const form = document.getElementById("login-form");
-    const errorTag = document.getElementById("login-error");
+const email = document.getElementById('email')
+const pass = document.getElementById('password')
+const form = document.getElementById('login-form')
+const emailRegex = /^[\w\d._-ñÑ]+@[\w\d._-ñÑ]+\.\w+$/;
+const error = document.getElementById('login-error')
 
-    form.addEventListener("submit", async (e) => {
-        e.preventDefault();
+form.addEventListener('submit', (e)=>{
+    e.preventDefault();
 
-        const formData = new FormData(form);
+    if(!email.value && pass.value){
+        mostrarError('Introduzca un correo electrónico');
+        return;
+    }
+    if(!pass.value && email.value){
+        mostrarError('Introduzca una contraseña');
+        return;
+    }
+    if(!email.value && !pass.value){
+        mostrarError('Introduzca un correo electrónico y una contraseña');
+        return;
+    }
 
-        const response = await fetch(form.action, {
-            method: "POST",
-            body: formData
-        });
+    if (!emailRegex.test(email.value.trim())) {
+        mostrarError("Introduce un correo electrónico válido");
+        return;
+    }
 
-        const data = await response.json();
-
-        if (data.status === "error") {
-            errorTag.textContent = data.message;
-            errorTag.style.display = "block";
-        } else if (data.status === "success") {
-            window.location.href = "../../Backend/PHP/index.php"; 
-        }
-    });
+    error.style.display = "none";
+    form.submit();
 });
+
+function mostrarError(message){
+    error.textContent = message;
+    error.style.display = 'block';
+}
