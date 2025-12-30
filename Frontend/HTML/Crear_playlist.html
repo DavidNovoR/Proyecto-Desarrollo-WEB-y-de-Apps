@@ -13,12 +13,16 @@
   <header>
     <nav class="navbar">
       <button class="menu-toggle" onclick="toggleSidebar()">☰</button>
-      <a href="../../Backend/PHP/index.php">
+      <a href="../../Backend/PHP/index.php" class="logo-link">
         <img class="logo_img" src="../img/logo_app.png" alt="">
       </a>
       <div class="logo">Musicfy</div>
-      <input type="text" placeholder="Buscar canciones, artistas, álbumes..." class="search-bar" />
-      <button class="search-btn"><img src="../img/icons/search_icon.png"></button>
+      <form action="../../Backend/PHP/busqueda.php" method="get" class="bloque-busqueda">
+          <input type="text" name="q" placeholder="Buscar canciones, artistas, álbumes..." class="search-bar" />
+          <button type="submit" class="search-btn">
+              <img src="../../Frontend/img/icons/search_icon.png" alt="icono de lupa de búsqueda">
+          </button>
+      </form>
       <button class="login-btn">Iniciar sesión</button>
     </nav>
   </header>
