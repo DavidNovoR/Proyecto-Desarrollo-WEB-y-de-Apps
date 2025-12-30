@@ -1,0 +1,65 @@
+<?php
+session_start();
+require_once __DIR__ . "/db.php";
+
+if ($_SERVER["REQUEST_METHOD"] === "POST") {
+
+    $nombre    = trim($_POST["nombre"] ?? "");
+    $apellido  = trim($_POST["apellidos"] ?? "");
+    $usuario   = trim($_POST["user"] ?? "");
+    $email     = trim($_POST["email"] ?? "");
+    $password  = trim($_POST["password"] ?? "");
+
+    // Validación básica
+    if (!$nombre || !$apellido || !$usuario || !$email || !$password) {
+        echo json_encode(["status" => "error", "message" => "Todos los campos son obligatorios."]);
+        exit;
+    }
+
+    // Validación de email
+    if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+        echo json_encode(["status" => "error", "message" => "El formato del email no es válido."]);
+        exit;
+    }
+
+    // Validación de contraseña fuerte
+    $regexPassword = "/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[\W_]).{8,}$/";
+
+    if (!preg_match($regexPassword, $password)) {
+        echo json_encode([
+            "status" => "error",
+            "message" => "La contraseña debe tener mínimo 8 caracteres, incluir mayúsculas, minúsculas, números y símbolos."
+        ]);
+        exit;
+    }
+
+    // Comprobar si usuario o email ya existen
+    $sqlCheck = "SELECT id FROM users WHERE usuario = :usuario OR email = :email LIMIT 1";
+    $stmt = $pdo->prepare($sqlCheck);
+    $stmt->execute(["usuario" => $usuario, "email" => $email]);
+
+    if ($stmt->fetch()) {
+        echo json_encode(["status" => "error", "message" => "El usuario o correo ya están registrados."]);
+        exit;
+    }
+
+    // Hashear contraseña
+    $hash = password_hash($password, PASSWORD_DEFAULT);
+
+    // Insertar usuario
+    $sqlInsert = "INSERT INTO users (usuario, password, nombre, apellido, email, rol)
+                  VALUES (:usuario, :password, :nombre, :apellido, :email, 'user')";
+
+    $stmt = $pdo->prepare($sqlInsert);
+    $stmt->execute([
+        "usuario"  => $usuario,
+        "password" => $hash,
+        "nombre"   => $nombre,
+        "apellido" => $apellido,
+        "email"    => $email
+    ]);
+
+    echo json_encode(["status" => "success"]);
+    exit;
+}
+?>
