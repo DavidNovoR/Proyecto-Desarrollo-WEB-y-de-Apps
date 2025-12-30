@@ -1,43 +1,51 @@
 <?php
+session_start();
 require_once __DIR__ . "/db.php";
 
-// ===============================
-// 1. Recoger datos del formulario
-// ===============================
+//Verificar sesión
+if (!isset($_SESSION["user_id"])) {
+    echo json_encode(["status" => "error", "message" => "Debes iniciar sesión."]);
+    exit;
+}
+
+$user_id = $_SESSION["user_id"];
+$rol     = $_SESSION["rol"] ?? "user"; // por defecto user
+
+//Recoger datos del formulario
 $nombre      = $_POST['nombre']        ?? '';
 $descripcion = $_POST['descripcion']   ?? '';
 $visibilidad = $_POST['visibilidad']   ?? 'privada';
-$canciones   = $_POST['canciones']     ?? [];   // array o vacío
-$user_id     = 1; // temporal hasta que tengas login
+$canciones   = $_POST['canciones']     ?? [];
 
-// ===============================
-// 2. Procesar imagen
-// ===============================
+//Validar visibilidad según rol
+if ($visibilidad === "publica" && $rol !== "admin") {
+    echo json_encode([
+        "status" => "error",
+        "message" => "Solo los administradores pueden crear playlists públicas."
+    ]);
+    exit;
+}
+
+//Procesar imagen
 $imagen = null;
 
 if (!empty($_FILES['imagen']['name'])) {
 
     $imagen = basename($_FILES['imagen']['name']);
-
-    // Ruta REAL donde guardar la imagen
     $destinoCarpeta = __DIR__ . "/../../Frontend/img/playlists/";
 
-    // Crear carpeta si no existe
     if (!is_dir($destinoCarpeta)) {
         mkdir($destinoCarpeta, 0777, true);
     }
 
     $rutaDestino = $destinoCarpeta . $imagen;
 
-    // Mover archivo subido
     if (!move_uploaded_file($_FILES['imagen']['tmp_name'], $rutaDestino)) {
-        $imagen = null; // si falla, no guardamos imagen
+        $imagen = null;
     }
 }
 
-// ===============================
-// 3. Insertar playlist en la BD
-// ===============================
+//Insertar playlist
 $sql = "INSERT INTO playlists (user_id, nombre, descripcion, imagen, visibilidad) 
         VALUES (?, ?, ?, ?, ?)";
 
@@ -46,11 +54,8 @@ $stmt->execute([$user_id, $nombre, $descripcion, $imagen, $visibilidad]);
 
 $playlist_id = $pdo->lastInsertId();
 
-// ===============================
-// 4. Insertar canciones asociadas
-// ===============================
+//Insertar canciones asociadas
 if (!empty($canciones)) {
-
     $sql_cancion = "INSERT INTO playlist_songs (playlist_id, song_id) VALUES (?, ?)";
     $stmt_cancion = $pdo->prepare($sql_cancion);
 
@@ -59,7 +64,6 @@ if (!empty($canciones)) {
     }
 }
 
-// ===============================
-// 5. Respuesta para el fetch()
-// ===============================
-echo "ok";
+//Respuesta
+echo json_encode(["status" => "success"]);
+exit;

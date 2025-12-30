@@ -11,6 +11,7 @@ const playerAudio = new Audio();
 
 let currentIndex = -1;
 
+// CLICK EN UNA CANCIÓN DE LA LISTA
 document.querySelectorAll('.song-card-large').forEach((card, index) => {
   card.addEventListener('click', () => {
 
@@ -26,13 +27,17 @@ document.querySelectorAll('.song-card-large').forEach((card, index) => {
     playerArtist.textContent = artist;
 
     playerAudio.src = audio;
-    playerAudio.play();
-    audioPlayer.classList.add('active');
+    playerAudio.load();
 
-    playIcon.src = "../../Frontend/img/icons/pause_circle_icon.png";
+    playerAudio.addEventListener('canplay', () => {
+      playerAudio.play();
+      audioPlayer.classList.add('active');
+      playIcon.src = "../../Frontend/img/icons/pause_circle_icon.png";
+    }, { once: true });
   });
 });
 
+// PLAY / PAUSE
 playBtn.addEventListener('click', () => {
   if (playerAudio.paused) {
     playerAudio.play();
@@ -43,44 +48,56 @@ playBtn.addEventListener('click', () => {
   }
 });
 
+// CUANDO TERMINA → SUMAR 1 Y PASAR A LA SIGUIENTE
 playerAudio.addEventListener('ended', () => {
-  playIcon.src = "../../Frontend/img/icons/play_circle_icon.png";
+
+  // 🔥 SUMAR REPRODUCCIÓN SOLO AL TERMINAR
+  if (currentIndex !== -1) {
+    fetch("../../Backend/PHP/increment_reproducciones.php", {
+      method: "POST",
+      headers: { "Content-Type": "application/x-www-form-urlencoded" },
+      body: "id=" + encodeURIComponent(songList[currentIndex].id)
+    });
+  }
+
+  // Pasar a la siguiente canción
+  currentIndex = (currentIndex + 1) % songList.length;
+  loadSong(currentIndex);
 });
 
+// SIGUIENTE CANCIÓN
 nextBtn.addEventListener('click', () => {
-    if (currentIndex < songList.length - 1) {
-        loadSong(currentIndex + 1); // siguiente
-    } else {
-        // si ya no quedan más → aleatoria
-        const randomIndex = Math.floor(Math.random() * songList.length);
-        loadSong(randomIndex);
-    }
+  if (currentIndex === -1) return;
+
+  currentIndex = (currentIndex + 1) % songList.length;
+  loadSong(currentIndex);
 });
 
+// CANCIÓN ANTERIOR
 prevBtn.addEventListener('click', () => {
-    if (currentIndex > 0) {
-        // Ir a la canción anterior 
-        currentIndex--; 
-    } else { 
-        // Si estamos en la primera → aleatoria 
-        currentIndex = Math.floor(Math.random() * songList.length); 
-    } 
-    loadSong(currentIndex); 
+  if (currentIndex === -1) return;
+
+  currentIndex = (currentIndex - 1 + songList.length) % songList.length;
+  loadSong(currentIndex);
 });
 
+// CARGAR CANCIÓN POR ÍNDICE (NO SUMA REPRODUCCIONES)
 function loadSong(index) {
-    const song = songList[index];
-    if (!song) return;
+  const song = songList[index];
+  if (!song) return;
 
-    currentIndex = index;
+  currentIndex = index;
 
-    playerCover.src = song.portada;
-    playerTitle.textContent = song.titulo;
-    playerArtist.textContent = song.artista + " • " + (song.album ?? "Sin álbum");
+  playerCover.src = song.portada;
+  playerTitle.textContent = song.titulo;
+  playerArtist.textContent = song.artista + " • " + (song.album ?? "Sin álbum");
 
-    playerAudio.src = song.audio_url;
+  playerAudio.src = song.audio_url;
+  playerAudio.load();
+
+  playerAudio.addEventListener('canplay', () => {
     playerAudio.play();
     audioPlayer.classList.add('active');
-
     playIcon.src = "../../Frontend/img/icons/pause_circle_icon.png";
+  }, { once: true });
 }

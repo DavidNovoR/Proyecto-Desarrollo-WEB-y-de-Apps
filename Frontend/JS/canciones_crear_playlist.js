@@ -1,6 +1,4 @@
-// ===============================
 // 1. Cargar canciones desde la BD
-// ===============================
 document.addEventListener("DOMContentLoaded", function () {
     fetch("../../Backend/PHP/get_canciones.php")
         .then(response => response.json())
@@ -22,9 +20,7 @@ document.addEventListener("DOMContentLoaded", function () {
         .catch(error => console.error("Error cargando canciones:", error));
 });
 
-// ==========================================
 // 2. Enviar formulario y crear la playlist
-// ==========================================
 document.getElementById("formPlaylist").addEventListener("submit", function (e) {
     e.preventDefault(); // evita recargar la página
 
@@ -32,18 +28,17 @@ document.getElementById("formPlaylist").addEventListener("submit", function (e) 
     const formData = new FormData(form);
 
     fetch("../../Backend/PHP/crear_playlist.php", {
-        method: "POST",
-        body: formData
+    method: "POST",
+    body: formData
     })
-    .then(response => response.text())
+    .then(response => response.json())
     .then(data => {
         console.log("Respuesta del servidor:", data);
 
-        if (data.trim() === "ok") {
-            // Redirigir a inicio.php
-            window.location.href = "../../Backend/PHP/index.php";
+        if (data.status === "success") {
+            window.location.href = "../../Backend/PHP/library.php";
         } else {
-            alert("❌ Hubo un problema al crear la playlist");
+            alert("❌ " + (data.message || "Hubo un problema al crear la playlist"));
         }
     })
     .catch(error => {
