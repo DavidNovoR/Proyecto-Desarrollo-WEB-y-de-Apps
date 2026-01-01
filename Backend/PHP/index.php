@@ -1,6 +1,9 @@
 <?php
 session_start();
 
+if (!isset($_SESSION["user_id"]) && isset($_COOKIE["remember_user"])) {
+    $_SESSION["user_id"] = $_COOKIE["remember_user"];
+}
 if (!isset($_SESSION["user_id"])) {
     header("Location: ../../Frontend/HTML/LoginScreen.html");
     exit;

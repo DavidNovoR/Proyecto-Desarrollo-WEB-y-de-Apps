@@ -36,7 +36,7 @@ document.addEventListener("DOMContentLoaded", () => {
             if (data.status === "error") {
                 mostrarError(data.message);
             } else if (data.status === "success") {
-                window.location.href = "../HTML/login.html";
+                window.location.href = "/Proyecto-Desarrollo-WEB-y-de-Apps/Backend/PHP/index.php";
             }
 
         } catch (err) {

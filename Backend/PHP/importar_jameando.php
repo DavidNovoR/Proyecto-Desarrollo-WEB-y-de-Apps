@@ -1,5 +1,5 @@
 <?php
-require "/db.php";
+require __DIR__ . "/db.php";
 
 $API_KEY = "4690e24f";
 

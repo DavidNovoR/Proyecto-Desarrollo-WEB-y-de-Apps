@@ -1,4 +1,5 @@
 <?php
+header('Content-Type: application/json');
 session_start();
 require_once __DIR__ . "/db.php";
 
@@ -10,19 +11,16 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $email     = trim($_POST["email"] ?? "");
     $password  = trim($_POST["password"] ?? "");
 
-    // Validación básica
     if (!$nombre || !$apellido || !$usuario || !$email || !$password) {
         echo json_encode(["status" => "error", "message" => "Todos los campos son obligatorios."]);
         exit;
     }
 
-    // Validación de email
     if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
         echo json_encode(["status" => "error", "message" => "El formato del email no es válido."]);
         exit;
     }
 
-    // Validación de contraseña fuerte
     $regexPassword = "/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[\W_]).{8,}$/";
 
     if (!preg_match($regexPassword, $password)) {
@@ -33,7 +31,6 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         exit;
     }
 
-    // Comprobar si usuario o email ya existen
     $sqlCheck = "SELECT id FROM users WHERE usuario = :usuario OR email = :email LIMIT 1";
     $stmt = $pdo->prepare($sqlCheck);
     $stmt->execute(["usuario" => $usuario, "email" => $email]);
@@ -43,10 +40,8 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         exit;
     }
 
-    // Hashear contraseña
     $hash = password_hash($password, PASSWORD_DEFAULT);
 
-    // Insertar usuario
     $sqlInsert = "INSERT INTO users (usuario, password, nombre, apellido, email, rol)
                   VALUES (:usuario, :password, :nombre, :apellido, :email, 'user')";
 

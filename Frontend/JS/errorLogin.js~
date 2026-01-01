@@ -22,7 +22,7 @@ form.addEventListener('submit', async (e) => {
         return;
     }
 
-    if (inputValue.includes('@') && !emailRegex.test(inputValue)) {
+    if (!emailRegex.test(email.value.trim())) {
         mostrarError("Introduce un correo electrónico válido");
         return;
     }

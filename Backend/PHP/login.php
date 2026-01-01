@@ -6,6 +6,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
     $input = trim($_POST["email"] ?? "");
     $password = trim($_POST["password"] ?? "");
+    $remember = isset($_POST['remember']);
 
     if (empty($input) || empty($password)) {
         echo json_encode(["status" => "error", "message" => "Rellena todos los campos."]);
@@ -33,6 +34,15 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     // Login correcto
     $_SESSION["user_id"] = $user["id"];
     $_SESSION["usuario"] = $user["usuario"];
+
+    if ($remember) {
+        setcookie(
+            "remember_user",
+            $user["id"],
+            time() + (60 * 60 * 24 * 30),
+            "/"
+        );
+    }
 
     echo json_encode(["status" => "success"]);
     exit;

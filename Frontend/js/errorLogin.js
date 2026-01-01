@@ -3,11 +3,12 @@ const pass = document.getElementById('password');
 const form = document.getElementById('login-form');
 const emailRegex = /^[\w\d._-ñÑ]+@[\w\d._-ñÑ]+\.\w+$/;
 const error = document.getElementById('login-error');
+const inputValue = email.value.trim();
+
 
 form.addEventListener('submit', async (e) => {
     e.preventDefault();
 
-    // VALIDACIONES (sin tocar)
     if (!email.value && pass.value) {
         mostrarError('Introduzca un correo electrónico');
         return;
@@ -21,7 +22,7 @@ form.addEventListener('submit', async (e) => {
         return;
     }
 
-    if (!emailRegex.test(email.value.trim())) {
+    if (inputValue.includes('@') && !emailRegex.test(inputValue)) {
         mostrarError("Introduce un correo electrónico válido");
         return;
     }

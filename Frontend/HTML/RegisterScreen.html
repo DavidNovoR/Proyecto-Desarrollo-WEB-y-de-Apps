@@ -4,9 +4,9 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Login</title>
-    <link rel="stylesheet" href="CSS/style.css" />
-    <script src="js/passVisibility.js" defer></script>
-    <script src="js/errorRegister.js" defer></script>
+    <link rel="stylesheet" href="../CSS/style.css" />
+    <script src="../js/passVisibility.js" defer></script>
+    <script src="../js/errorRegister.js" defer></script>
 </head>
 <body>
 <nav class="navbar">
@@ -14,7 +14,10 @@
 </nav>
 <div id="register-container">
     <h1>Registro</h1>
-    <form id="register-form" method="POST" action="register.php" novalidate>
+    <form id="register-form"
+          method="POST"
+          action="/Proyecto-Desarrollo-WEB-y-de-Apps/Backend/PHP/register.php"
+          novalidate>
         <label for="nombre">Nombre</label>
         <input type="text" id="nombre" name="nombre" placeholder="Nombre" required>
         <label for="apellidos">Apellidos</label>
@@ -28,13 +31,16 @@
         <div class="input-password">
             <input type="password" id="password" name="password" placeholder="Contraseña" required>
             <img
-                    src="img/icons/visibility_off.svg"
+                    src="../img/icons/visibility_off.svg"
                     id="togglePassword"
                     class="toggle-password"
                     alt="Mostrar contraseña"
             >
         </div>
         <button type="submit">Registrarse</button>
+        <span class="link-form">
+            <a href="/Proyecto-Desarrollo-WEB-y-de-Apps/Frontend/HTML/LoginScreen.html">¿Ya tienes cuenta?</a>
+        </span>
     </form>
     <p class="error-tag" id="register-error"></p>
 </div>

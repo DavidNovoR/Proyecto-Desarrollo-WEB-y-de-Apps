@@ -6,8 +6,17 @@
   <component name="ChangeListManager">
     <list default="true" id="c9152341-407a-4a3b-beb9-0391ef619cfd" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Frontend/js/errorLogin.js" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/js/errorLogin.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Frontend/js/errorRegister.js" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/js/errorRegister.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Backend/PHP/importar_jameando.php" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/PHP/importar_jameando.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Backend/PHP/index.php" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/PHP/index.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Backend/PHP/login.php" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/PHP/login.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Backend/PHP/register.php" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/PHP/register.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Backend/login.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Backend/register.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Frontend/JS/errorLogin.js" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/JS/errorLogin.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Frontend/JS/errorRegister.js" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/JS/errorRegister.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Frontend/LoginScreen.html" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/HTML/LoginScreen.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Frontend/RegisterScreen.html" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/HTML/RegisterScreen.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Frontend/js/passVisibility.js" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/js/passVisibility.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -50,27 +59,29 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;DefaultHtmlFileTemplate&quot;: &quot;HTML File&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
-    &quot;com.codeium.enabled&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;feature/Camaron__CamaronDeLaIsla__Frontend&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/sergio/WebstormProjects/Proyecto-Desarrollo-WEB-y-de-Apps/Frontend&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "DefaultHtmlFileTemplate": "HTML File",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "com.codeium.enabled": "true",
+    "git-widget-placeholder": "feature/Camaron__CamaronDeLaIsla__Frontend",
+    "last_opened_file_path": "C:/Program Files/xampp/htdocs/Proyecto-Desarrollo-WEB-y-de-Apps/Frontend/HTML",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Program Files\xampp\htdocs\Proyecto-Desarrollo-WEB-y-de-Apps\Frontend\HTML" />
       <recent name="C:\Users\sergio\WebstormProjects\Proyecto-Desarrollo-WEB-y-de-Apps\Frontend" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Program Files\xampp\htdocs\Proyecto-Desarrollo-WEB-y-de-Apps\Frontend\HTML" />
       <recent name="C:\Users\sergio\WebstormProjects\Proyecto-Desarrollo-WEB-y-de-Apps\Frontend\img\icons" />
       <recent name="C:\Users\sergio\WebstormProjects\Proyecto-Desarrollo-WEB-y-de-Apps\Frontend\img" />
       <recent name="C:\Users\sergio\WebstormProjects\Proyecto-Desarrollo-WEB-y-de-Apps\Frontend" />
@@ -95,6 +106,8 @@
       <workItem from="1766397267487" duration="1391000" />
       <workItem from="1766860829602" duration="784000" />
       <workItem from="1767086278382" duration="8271000" />
+      <workItem from="1767183169887" duration="4454000" />
+      <workItem from="1767199210998" duration="14505000" />
     </task>
     <servers />
   </component>
