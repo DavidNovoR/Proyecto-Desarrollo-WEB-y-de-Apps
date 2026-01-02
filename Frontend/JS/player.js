@@ -6,6 +6,7 @@ const playBtn = document.querySelector('.player-play');
 const playIcon = document.querySelector('.player-play-icon');
 const nextBtn = document.querySelector('.player-next');
 const prevBtn = document.querySelector('.player-prev');
+let currentSongId = null;
 
 const playerAudio = new Audio();
 
@@ -21,6 +22,8 @@ document.querySelectorAll('.song-card-large').forEach((card, index) => {
     const title  = card.querySelector('.titulo h3').textContent;
     const artist = card.querySelector('.autor p').textContent;
     const audio  = card.dataset.audio;
+    currentSongId = card.dataset.songId;
+
 
     playerCover.src = cover;
     playerTitle.textContent = title;
@@ -33,6 +36,8 @@ document.querySelectorAll('.song-card-large').forEach((card, index) => {
       playerAudio.play();
       audioPlayer.classList.add('active');
       playIcon.src = "../../Frontend/img/icons/pause_circle_icon.png";
+      registrarReproduccion(currentSongId);
+
     }, { once: true });
   });
 });
@@ -46,23 +51,6 @@ playBtn.addEventListener('click', () => {
     playerAudio.pause();
     playIcon.src = "../../Frontend/img/icons/play_circle_icon.png";
   }
-});
-
-// CUANDO TERMINA → SUMAR 1 Y PASAR A LA SIGUIENTE
-playerAudio.addEventListener('ended', () => {
-
-  // 🔥 SUMAR REPRODUCCIÓN SOLO AL TERMINAR
-  if (currentIndex !== -1) {
-    fetch("../../Backend/PHP/increment_reproducciones.php", {
-      method: "POST",
-      headers: { "Content-Type": "application/x-www-form-urlencoded" },
-      body: "id=" + encodeURIComponent(songList[currentIndex].id)
-    });
-  }
-
-  // Pasar a la siguiente canción
-  currentIndex = (currentIndex + 1) % songList.length;
-  loadSong(currentIndex);
 });
 
 // SIGUIENTE CANCIÓN
@@ -84,6 +72,7 @@ prevBtn.addEventListener('click', () => {
 // CARGAR CANCIÓN POR ÍNDICE (NO SUMA REPRODUCCIONES)
 function loadSong(index) {
   const song = songList[index];
+  currentSongId = song.id;
   if (!song) return;
 
   currentIndex = index;
@@ -99,5 +88,6 @@ function loadSong(index) {
     playerAudio.play();
     audioPlayer.classList.add('active');
     playIcon.src = "../../Frontend/img/icons/pause_circle_icon.png";
+    registrarReproduccion(currentSongId);
   }, { once: true });
 }

@@ -5,18 +5,19 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="c9152341-407a-4a3b-beb9-0391ef619cfd" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/Backend/PHP/add_history.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Backend/PHP/historial.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Frontend/JS/history.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Frontend/img/icons/history_icon.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Backend/PHP/importar_jameando.php" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/PHP/importar_jameando.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Backend/PHP/favoritos.php" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/PHP/favoritos.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Backend/PHP/index.php" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/PHP/index.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Backend/PHP/login.php" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/PHP/login.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Backend/PHP/register.php" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/PHP/register.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Backend/login.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Backend/register.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Frontend/JS/errorLogin.js" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/JS/errorLogin.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Frontend/JS/errorRegister.js" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/JS/errorRegister.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Frontend/LoginScreen.html" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/HTML/LoginScreen.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Frontend/RegisterScreen.html" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/HTML/RegisterScreen.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Frontend/js/passVisibility.js" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/js/passVisibility.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Backend/PHP/library.php" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/PHP/library.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Frontend/CSS/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/CSS/style.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Frontend/HTML/LoginScreen.html" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/HTML/LoginScreen.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Frontend/HTML/estadisticas.html" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/HTML/estadisticas.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Frontend/HTML/pagina_inicio.html" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/HTML/pagina_inicio.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Frontend/JS/player.js" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/JS/player.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -81,6 +82,7 @@
       <recent name="C:\Users\sergio\WebstormProjects\Proyecto-Desarrollo-WEB-y-de-Apps\Frontend" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Program Files\xampp\htdocs\Proyecto-Desarrollo-WEB-y-de-Apps\Backend\PHP" />
       <recent name="C:\Program Files\xampp\htdocs\Proyecto-Desarrollo-WEB-y-de-Apps\Frontend\HTML" />
       <recent name="C:\Users\sergio\WebstormProjects\Proyecto-Desarrollo-WEB-y-de-Apps\Frontend\img\icons" />
       <recent name="C:\Users\sergio\WebstormProjects\Proyecto-Desarrollo-WEB-y-de-Apps\Frontend\img" />
@@ -107,7 +109,7 @@
       <workItem from="1766860829602" duration="784000" />
       <workItem from="1767086278382" duration="8271000" />
       <workItem from="1767183169887" duration="4454000" />
-      <workItem from="1767199210998" duration="14505000" />
+      <workItem from="1767199210998" duration="27864000" />
     </task>
     <servers />
   </component>
