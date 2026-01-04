@@ -9,14 +9,8 @@ if (!isset($_SESSION["user_id"])) {
 require_once(__DIR__ . '/songs.php');
 $data = require(__DIR__ . '/get_playlists.php');
 $playlist = $data['playlists'];
+$playlists = array_slice($playlists, 0, 4); 
 
-$mapa_generos = [];
-foreach ($playlist as $p) { 
-    $nombre = strtolower(trim($p['nombre'])); 
-    $mapa_generos[$nombre] = $p['id']; 
-}
-
-$playlists = array_slice($playlists, 0, 4);
 // Obtener canciones favoritas del usuario
 $stmtFav = $pdo->prepare("SELECT song_id FROM favorites WHERE user_id = ?");
 $stmtFav->execute([$_SESSION["user_id"]]);

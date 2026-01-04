@@ -1,15 +1,30 @@
 <?php
 require_once(__DIR__ . '/db.php');
+$userId = $_SESSION["user_id"] ?? null;
+
+if (!$userId) {
+    return ["playlists" => []];
+}
 
 try {
-    // Obtener todas las playlists ordenadas por nombre
-    $stmt = $pdo->query("SELECT id, nombre, descripcion, imagen FROM playlists ORDER BY nombre ASC");
-    $playlists = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    $sql = "
+        SELECT id, nombre, descripcion, imagen
+        FROM playlists
+        WHERE 
+            visibilidad = 'publica'
+            OR (visibilidad = 'privada' AND user_id = :uid)
+        ORDER BY nombre ASC
+    ";
+
+    $stmt = $pdo->prepare($sql);
+    $stmt->execute([
+        "uid" => $userId
+    ]);
 
     return [
-        "playlists" => $playlists
+        "playlists" => $stmt->fetchAll(PDO::FETCH_ASSOC)
     ];
 
 } catch (PDOException $e) {
-    die("Error al obtener playlists: " . $e->getMessage());
+    die('Error al obtener playlists: ' . $e->getMessage());
 }
