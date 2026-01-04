@@ -47,7 +47,7 @@ session_start();
     </ul>
   </aside>
 
-  <!-- MAIN SOLO CAMBIA ESTO -->
+  <!-- MAIN -->
   <main>
     <section class="playlist-editor">
     <h2>Crear mi nueva Playlist</h2>
