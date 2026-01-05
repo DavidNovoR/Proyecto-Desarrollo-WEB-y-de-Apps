@@ -60,7 +60,8 @@ $playlists = $data['playlists'];
         <!-- CONTENIDO PRINCIPAL -->
         <main>
             <section class="quick-picks">
-            <h2>Mis Playlists <a href="crear_playlist_html.php" class="btn-edit">Crear Playlist</a></h2>
+                <h1 class='titulo-principal'>Mis PlayList</h1>
+            <h2><a href="crear_playlist_html.php" class="titulo" id='crear-playlist'>Crear Playlist</a></h2>
             <div class="playlist-list">
                 <?php foreach ($playlists as $p): ?>
                 <a href="playlist.php?id=<?= $p['id'] ?>&from=library" class="song-card">

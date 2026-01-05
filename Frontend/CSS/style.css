@@ -429,17 +429,6 @@ button[type="submit"]:hover {
 /*  ======================
     ESTADÍSTICAS DE MÚSICA
     ====================== */
-
-.titulo-estadistica {
-    font-size: 2rem;
-    margin-bottom: 2rem;
-    background: linear-gradient(90deg, #00cfff, #ff00ff);
-    background-clip: text;
-    -webkit-text-fill-color: transparent;
-    animation: gradientMove 6s ease infinite;
-    text-align: center;
-}
-
 .stats-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -1069,7 +1058,7 @@ form label{
 }
 
 /*Historial*/
-.titulo-historial {
+.titulo-principal {
     font-size: 2rem;
     margin-bottom: 2rem;
     background: linear-gradient(90deg, #00cfff, #ff00ff);
@@ -1126,3 +1115,15 @@ form label{
     color: #aaa;
 }
 
+#crear-playlist {
+    display: flex;
+    justify-content: right;
+    margin: 12px;
+}
+
+#crear-playlist:hover {
+    display: flex;
+    justify-content: right;
+    margin: 12px;
+    color: #007bff;
+}

@@ -67,7 +67,7 @@ if (empty($fav_ids)) {
         <!-- CONTENIDO PRINCIPAL -->
         <main>
             <section class="quick-picks">
-            <h2>Mis Canciones Favoritas</h2>
+            <h2 class='titulo-principal'>Mis Canciones Favoritas</h2>
             <div class="song-list-large">
                 <?php if (empty($canciones_fav)): ?>
                     <p>No tienes canciones favoritas todavía.</p>

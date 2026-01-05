@@ -5,19 +5,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="c9152341-407a-4a3b-beb9-0391ef619cfd" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/Backend/PHP/add_history.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Backend/PHP/historial.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Frontend/JS/history.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Frontend/img/icons/history_icon.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Backend/PHP/favoritos.php" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/PHP/favoritos.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Backend/PHP/historial.php" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/PHP/historial.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Backend/PHP/index.php" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/PHP/index.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Backend/PHP/library.php" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/PHP/library.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Frontend/CSS/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/CSS/style.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Frontend/HTML/LoginScreen.html" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/HTML/LoginScreen.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Frontend/HTML/estadisticas.html" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/HTML/estadisticas.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Frontend/HTML/pagina_inicio.html" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/HTML/pagina_inicio.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Frontend/JS/player.js" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/JS/player.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Frontend/HTML/Crear_playlist.html" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/HTML/Crear_playlist.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Frontend/HTML/estadisticas.html" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/PHP/estadisticas.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -60,22 +55,22 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "DefaultHtmlFileTemplate": "HTML File",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "com.codeium.enabled": "true",
-    "git-widget-placeholder": "feature/Camaron__CamaronDeLaIsla__Frontend",
-    "last_opened_file_path": "C:/Program Files/xampp/htdocs/Proyecto-Desarrollo-WEB-y-de-Apps/Frontend/HTML",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;DefaultHtmlFileTemplate&quot;: &quot;HTML File&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;com.codeium.enabled&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;feature/Camaron__CamaronDeLaIsla__Frontend&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Program Files/xampp/htdocs/Proyecto-Desarrollo-WEB-y-de-Apps/Frontend/HTML&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Program Files\xampp\htdocs\Proyecto-Desarrollo-WEB-y-de-Apps\Frontend\HTML" />
@@ -109,7 +104,8 @@
       <workItem from="1766860829602" duration="784000" />
       <workItem from="1767086278382" duration="8271000" />
       <workItem from="1767183169887" duration="4454000" />
-      <workItem from="1767199210998" duration="27864000" />
+      <workItem from="1767199210998" duration="28406000" />
+      <workItem from="1767529778542" duration="2878000" />
     </task>
     <servers />
   </component>
