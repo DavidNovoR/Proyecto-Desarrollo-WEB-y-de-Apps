@@ -46,7 +46,8 @@ $favoritas = $stmtFav->fetchAll(PDO::FETCH_COLUMN);
         <li><a href="index.php"><img src="../../Frontend/img/icons/home_icon.png" alt="icono de casa">  Inicio</a></li>
         <li><a href="library.php"><img src="../../Frontend/img/icons/library_music_icon.png" alt="icono de Playlists">  Mi Biblioteca</a></li>
         <li><a href="favoritos.php"><img src="../../Frontend/img/icons/favorite_icon.png" alt="icono de favoritos">  Favoritos</a></li>
-        <li><a href="../../Frontend/HTML/estadisticas.html"><img src="../../Frontend/img/icons/analytics_icon.png" alt="icono de estadisticas">  Estadísticas</a></li>
+        <li><a href="estadisticas.php"><img src="../../Frontend/img/icons/analytics_icon.png" alt="icono de estadisticas">  Estadísticas</a></li>
+        <li><a href="historial.php"><img src="../../Frontend/img/icons/history_icon.png" alt="icono de historial">  Historial</a></li>
         </ul>
     </aside>
 
@@ -57,6 +58,7 @@ $favoritas = $stmtFav->fetchAll(PDO::FETCH_COLUMN);
       <div class="song-list-large">
         <?php foreach($canciones as $c): ?>
           <div class="song-card-large" data-audio="<?= htmlspecialchars($c['audio_url']) ?>">
+              <div></div>
             <div class="section portada">
               <img src="<?= htmlspecialchars($c['portada'] ?? 'img/cover.jpg') ?>" alt="Portada álbum" />
             </div>

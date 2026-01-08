@@ -153,7 +153,7 @@ main {
 
 .song-card-large {
     display: grid;
-    grid-template-columns: 64px 1fr 1fr 80px;
+    grid-template-columns: 40px 55px 1fr 1fr 80px;
     align-items: center;
     gap: 1rem;
     background-color: #1a1a1a;
@@ -166,6 +166,8 @@ main {
     height: 60px;
     margin: 1%
 }
+
+
 
 .song-card-large .section {
     display: flex;
@@ -945,13 +947,6 @@ form label{
         padding: 0.7rem;
     }
 
-    /* SONG CARD LARGE */
-    .song-card-large {
-        grid-template-columns: 50px 1fr 60px;
-        height: auto;
-        padding: 0.7rem;
-    }
-
     .duracion {
         display: none; /* Oculto para simplificar en móvil */
     }
@@ -1126,4 +1121,19 @@ form label{
     justify-content: right;
     margin: 12px;
     color: #007bff;
+}
+
+
+
+.song-card-large .drag-handle {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: grab;
+    width: 40px;
+}
+
+.song-card-large .drag-handle img {
+    width: 18px;
+    height: 18px;
 }

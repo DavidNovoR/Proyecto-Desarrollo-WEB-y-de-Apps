@@ -68,10 +68,19 @@ $ids_vinculados = array_column($canciones_vinculadas, 'id');
   <!-- SIDEBAR -->
   <aside class="sidebar">
     <ul>
-      <li><a href="../../Backend/PHP/index.php"><img src="../../Frontend/img/icons/home_icon.png"> Inicio</a></li>
-      <li><img src="../../Frontend/img/icons/library_music_icon.png"> Mi Biblioteca</li>
-      <li><img src="../../Frontend/img/icons/favorite_icon.png"> Favoritos</li>
-      <li><a href="estadisticas.html"><img src="../../Frontend/img/icons/analytics_icon.png"> Estadísticas</a></li>
+          <li><a href="index.php"><img src="../../Frontend/img/icons/home_icon.png" alt="icono de casa">  Inicio</a></li>
+          <li><a href="library.php"><img src="../../Frontend/img/icons/library_music_icon.png" alt="icono de Playlists">  Mi Biblioteca</a></li>
+          <li><a href="favoritos.php"><img src="../../Frontend/img/icons/favorite_icon.png" alt="icono de favoritos">  Favoritos</a></li>
+          <li><a href="estadisticas.php"><img src="../../Frontend/img/icons/analytics_icon.png" alt="icono de estadisticas">  Estadísticas</a></li>
+          <li><a href="historial.php"><img src="../../Frontend/img/icons/history_icon.png" alt="icono de historial">  Historial</a></li>
+          <?php if (isset($_SESSION["rol"]) && $_SESSION["rol"] === "admin"): ?>
+                              <li class="sidebar-admin">
+                                <a href="gestionar.php">
+                                  <img src="../../Frontend/img/icons/gestionar_icon.png">
+                                  Gestionar
+                                </a>
+                              </li>
+                          <?php endif; ?>
     </ul>
   </aside>
 

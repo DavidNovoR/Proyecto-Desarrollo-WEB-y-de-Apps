@@ -17,17 +17,8 @@ $descripcion = $_POST['descripcion']   ?? '';
 $visibilidad = $_POST['visibilidad']   ?? 'privada';
 $canciones   = $_POST['canciones']     ?? [];
 
-//Validar visibilidad según rol
-if ($visibilidad === "publica" && $rol !== "admin") {
-    echo json_encode([
-        "status" => "error",
-        "message" => "Solo los administradores pueden crear playlists públicas."
-    ]);
-    exit;
-}
-
 //Procesar imagen
-$imagen = null;
+$imagen = '../../../Frontend/img/noselected.png';
 
 if (!empty($_FILES['imagen']['name'])) {
 

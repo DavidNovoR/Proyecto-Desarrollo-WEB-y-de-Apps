@@ -1,0 +1,48 @@
+// Cargar playlists
+fetch("../../Backend/PHP/get_playlists.php")
+    .then(res => res.json())
+    .then(data => {
+        const select = document.getElementById("playlistSelect");
+        data.playlists.forEach(p => {
+            const opt = document.createElement("option");
+            opt.value = p.id;
+            opt.textContent = p.nombre;
+            select.appendChild(opt);
+        });
+    });
+
+// Al cambiar playlist, cargar canciones
+document.getElementById("playlistSelect").addEventListener("change", e => {
+    fetch("../../Backend/PHP/get_playlist_songs.php?id=" + e.target.value)
+        .then(res => res.json())
+        .then(data => {
+            const select = document.getElementById("cancionesPlaylist");
+            select.innerHTML = "";
+            data.forEach(song => {
+                const opt = document.createElement("option");
+                opt.value = song.id;
+                opt.textContent = song.titulo;
+                select.appendChild(opt);
+            });
+        });
+});
+
+// Eliminar canciones
+document.getElementById("formEliminar").addEventListener("submit", e => {
+    e.preventDefault();
+
+    const playlistId = document.getElementById("playlistSelect").value;
+    const canciones = [...document.getElementById("cancionesPlaylist").selectedOptions]
+        .map(o => o.value);
+
+    fetch("../../Backend/PHP/remove_songs_playlist.php", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ playlistId, canciones })
+    })
+        .then(res => res.json())
+        .then(data => {
+            alert(data.message);
+            location.reload();
+        });
+});

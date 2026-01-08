@@ -14,7 +14,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     }
 
     // Buscar por email o usuario
-    $sql = "SELECT id, usuario, email, password FROM users 
+    $sql = "SELECT id, usuario, email, password, rol FROM users
             WHERE email = :input OR usuario = :input LIMIT 1";
 
     $stmt = $pdo->prepare($sql);
@@ -34,6 +34,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     // Login correcto
     $_SESSION["user_id"] = $user["id"];
     $_SESSION["usuario"] = $user["usuario"];
+    $_SESSION["rol"] = $user["rol"];
 
     if ($remember) {
         setcookie(

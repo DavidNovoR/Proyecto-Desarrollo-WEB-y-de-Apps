@@ -70,6 +70,7 @@ $favoritas = $stmtFav->fetchAll(PDO::FETCH_COLUMN);
           <p><strong>Canciones:</strong> <?= $data['total_canciones'] ?></p>
           <p><strong>Duración total:</strong> <?= $data['duracion_total'] ?></p>
           <p><strong>Última modificación:</strong> <?= $data['ultima_modificacion'] ?></p>
+          <p><strong>Fecha de creación:</strong> <?= $data['fecha_creacion'] ?></p>
           <?php if (isset($_GET['from']) && $_GET['from'] === 'library'): ?>
               <div class="playlist-actions">
                   <a href="editar_playlist.php?id=<?= $playlist['id'] ?>" class="btn-edit">Editar</a>
@@ -81,9 +82,12 @@ $favoritas = $stmtFav->fetchAll(PDO::FETCH_COLUMN);
     </section>
 
     <section class="playlist-songs">
-      <div class="song-list-large">
+      <div class="song-list-large" id="playlist-container">
         <?php foreach($canciones as $c): ?>
-          <div class="song-card-large" data-audio="<?= htmlspecialchars($c['audio_url']) ?>" data-id="<?= htmlspecialchars($c['id']) ?>">
+          <div class="song-card-large" data-audio="<?= htmlspecialchars($c['audio_url']) ?>" data-id="<?= htmlspecialchars($c['id']) ?>" draggable="true">
+            <div class="drag-handle">
+                    <img src="../../Frontend/img/icons/arrastrar.png" alt="Arrastrar">
+            </div>
             <div class="section portada">
               <img src="<?= htmlspecialchars($c['portada']) ?>" alt="">
             </div>
@@ -136,7 +140,10 @@ $favoritas = $stmtFav->fetchAll(PDO::FETCH_COLUMN);
   <footer>
     <p>© 2025-2026 PlayListApp - Proyecto académico</p>
   </footer>
-
+  <script>
+      const PLAYLIST_ID = <?= $playlist['id'] ?>;
+  </script>
+  <script src="../../Frontend/JS/playlist_sort.js"></script>
   <script>
     function toggleSidebar() {
         const sidebar = document.querySelector('.sidebar');
@@ -144,12 +151,9 @@ $favoritas = $stmtFav->fetchAll(PDO::FETCH_COLUMN);
     }
   </script>
   <script> 
-    const songList = <?= json_encode($canciones, JSON_UNESCAPED_UNICODE) ?>; 
+    const songList = <?= json_encode($canciones, JSON_UNESCAPED_UNICODE) ?>;
   </script>
+
   <script src="../../Frontend/JS/player.js"></script>
   <script src="../../Frontend/JS/like.js"></script>
-  <script src="../../Frontend/JS/audio_line.js"></script>
-  <script src="../../Frontend/JS/volume_line.js"></script>
-
-</body>
-</html>
+  <script src="../../Frontend/JS/audio_line.js"></

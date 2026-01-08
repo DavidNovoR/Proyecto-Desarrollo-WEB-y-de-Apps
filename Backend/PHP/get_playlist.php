@@ -37,17 +37,23 @@ if (in_array($nombre, $generos_validos)) {
     // 4. Insertar solo las que falten
     $sqlInsert = $pdo->prepare("INSERT INTO playlist_songs (playlist_id, song_id) VALUES (?, ?)");
 
+    $maxOrdenStmt = $pdo->prepare("SELECT IFNULL(MAX(orden), 0) FROM playlist_songs WHERE playlist_id = ?");
+    $maxOrdenStmt->execute([$playlistId]);
+    $maxOrden = $maxOrdenStmt->fetchColumn();
+
     foreach ($canciones as $c) {
         if (!in_array($c['id'], $ya_vinculadas)) {
-            $sqlInsert->execute([$playlistId, $c['id']]);
+            $maxOrden++;
+            $sqlInsert->execute([$playlistId, $c['id'], $maxOrden]);
         }
     }
 } else {
     $stmt = $pdo->prepare("
-        SELECT s.* 
+        SELECT s.*
         FROM songs s
         JOIN playlist_songs ps ON s.id = ps.song_id
         WHERE ps.playlist_id = ?
+        ORDER BY ps.orden ASC
     ");
     $stmt->execute([$playlistId]);
     $canciones = $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -78,5 +84,7 @@ return [
     "canciones" => $canciones,
     "total_canciones" => $total_canciones,
     "duracion_total" => $duracion_total,
-    "ultima_modificacion" => $playlist['ultima_modificacion']
+    "ultima_modificacion" => $playlist['ultima_modificacion'],
+    "fecha_creacion" => $playlist['fecha_creacion']
+
 ];

@@ -36,24 +36,48 @@ $historial = $stmt->fetchAll(PDO::FETCH_ASSOC);
 <header>
   <nav class="navbar">
       <button class="menu-toggle" onclick="toggleSidebar()">☰</button>
+
       <a href="index.php">
           <img class="logo_img" src="../../Frontend/img/logo_app.png" alt="">
       </a>
+
       <div class="logo">Musicfy</div>
-      <input type="text" placeholder="Buscar canciones, artistas, álbumes..." class="search-bar" />
-      <button class="search-btn"><img src="../../Frontend/img/icons/search_icon.png"></button>
-      <button class="login-btn">Iniciar sesión</button>
+
+      <form action="busqueda.php" method="get" class="bloque-busqueda">
+              <input type="text" name="q" placeholder="Buscar canciones, artistas, álbumes..." class="search-bar" />
+              <button type="submit" class="search-btn">
+                  <img src="../../Frontend/img/icons/search_icon.png" alt="icono de lupa de búsqueda">
+              </button>
+            </form>
+
+      <?php if (isset($_SESSION["usuario"])): ?>
+          <div class="user-info">
+              <span class="username">👤 <?= htmlspecialchars($_SESSION["usuario"]) ?></span>
+              <a href="logout.php" class="logout-btn">Cerrar sesión</a>
+          </div>
+      <?php else: ?>
+          <a href="../../Frontend/HTML/LoginScreen.html" class="login-btn">Iniciar sesión</a>
+      <?php endif; ?>
   </nav>
 </header>
 
+
 <aside class="sidebar">
   <ul>
-    <li><a href="index.php"><img src="../../Frontend/img/icons/home_icon.png"> Inicio</a></li>
-                <li><a href="library.php"><img src="../../Frontend/img/icons/library_music_icon.png"> Mi Biblioteca</a></li>
-                <li><a href="favoritos.php"><img src="../../Frontend/img/icons/favorite_icon.png"> Favoritos</a></li>
-                <li><a href="../../Frontend/HTML/estadisticas.html"><img src="../../Frontend/img/icons/analytics_icon.png"> Estadísticas</a></li>
-                <li><a href="../../Backend/PHP/historial.php"><img src="../../Frontend/img/icons/history_icon.png" alt="icono de historial">  Historial</a></li>
-  </ul>
+        <li><a href="index.php"><img src="../../Frontend/img/icons/home_icon.png" alt="icono de casa">  Inicio</a></li>
+        <li><a href="library.php"><img src="../../Frontend/img/icons/library_music_icon.png" alt="icono de Playlists">  Mi Biblioteca</a></li>
+        <li><a href="favoritos.php"><img src="../../Frontend/img/icons/favorite_icon.png" alt="icono de favoritos">  Favoritos</a></li>
+        <li><a href="estadisticas.php"><img src="../../Frontend/img/icons/analytics_icon.png" alt="icono de estadisticas">  Estadísticas</a></li>
+        <li><a href="historial.php"><img src="../../Frontend/img/icons/history_icon.png" alt="icono de historial">  Historial</a></li>
+        <?php if (isset($_SESSION["rol"]) && $_SESSION["rol"] === "admin"): ?>
+                    <li class="sidebar-admin">
+                      <a href="gestionar.php">
+                        <img src="../../Frontend/img/icons/gestionar_icon.png">
+                        Gestionar
+                      </a>
+                    </li>
+                <?php endif; ?>
+      </ul>
 </aside>
 
 <main>

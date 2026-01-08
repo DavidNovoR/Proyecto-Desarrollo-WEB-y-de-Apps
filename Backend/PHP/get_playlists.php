@@ -3,7 +3,13 @@ require_once(__DIR__ . '/db.php');
 
 try {
     // Obtener todas las playlists ordenadas por nombre
-    $stmt = $pdo->query("SELECT id, nombre, descripcion, imagen FROM playlists ORDER BY nombre ASC");
+    $stmt = $pdo->prepare("
+        SELECT id, nombre, descripcion, imagen
+        FROM playlists
+        WHERE visibilidad = 'publica'
+        ORDER BY nombre ASC
+    ");
+    $stmt->execute();
     $playlists = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
     return [

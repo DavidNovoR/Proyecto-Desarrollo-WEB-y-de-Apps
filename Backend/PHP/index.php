@@ -64,8 +64,16 @@ $favoritas = $stmtFav->fetchAll(PDO::FETCH_COLUMN);
       <li><a href="index.php"><img src="../../Frontend/img/icons/home_icon.png" alt="icono de casa">  Inicio</a></li>
       <li><a href="library.php"><img src="../../Frontend/img/icons/library_music_icon.png" alt="icono de Playlists">  Mi Biblioteca</a></li>
       <li><a href="favoritos.php"><img src="../../Frontend/img/icons/favorite_icon.png" alt="icono de favoritos">  Favoritos</a></li>
-      <li><a href="../../Backend/PHP/estadisticas.php"><img src="../../Frontend/img/icons/analytics_icon.png" alt="icono de estadisticas">  Estadísticas</a></li>
-      <li><a href="../../Backend/PHP/historial.php"><img src="../../Frontend/img/icons/history_icon.png" alt="icono de historial">  Historial</a></li>
+      <li><a href="estadisticas.php"><img src="../../Frontend/img/icons/analytics_icon.png" alt="icono de estadisticas">  Estadísticas</a></li>
+      <li><a href="historial.php"><img src="../../Frontend/img/icons/history_icon.png" alt="icono de historial">  Historial</a></li>
+        <?php if (isset($_SESSION["rol"]) && $_SESSION["rol"] === "admin"): ?>
+            <li class="sidebar-admin">
+              <a href="gestionar.php">
+                <img src="../../Frontend/img/icons/gestionar_icon.png">
+                Gestionar
+              </a>
+            </li>
+        <?php endif; ?>
     </ul>
   </aside>
 
@@ -94,9 +102,10 @@ $favoritas = $stmtFav->fetchAll(PDO::FETCH_COLUMN);
     <h2>Top Canciones</h2>
     <div class="song-list-large">
       <?php foreach($canciones as $c): ?>
-      <div class="song-card-large"
+      <div class="song-card-large song-card-large-home"
            data-audio="<?= htmlspecialchars($c['audio_url']) ?>"
            data-song-id="<?= $c['id'] ?>">
+          <div class="drag-handle"></div>
           <div class="section portada">
             <img src="<?= htmlspecialchars($c['portada'] ?? 'img/cover.jpg') ?>" alt="Portada álbum" />
           </div>
@@ -166,6 +175,7 @@ $favoritas = $stmtFav->fetchAll(PDO::FETCH_COLUMN);
       <span id="current-time">0:00</span>
       <input type="range" id="progress-bar" min="0" max="100" value="0">
       <span id="total-time">0:00</span>
+      <img src='../../Frontend/img/icons/altavoz.png' alt='altavoz'>
       <div class="player-volume">
         <input type="range" id="volume-bar" min="0" max="100" value="80">
       </div>
