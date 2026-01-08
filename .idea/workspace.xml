@@ -4,36 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c9152341-407a-4a3b-beb9-0391ef619cfd" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/Backend/PHP/add_song.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Backend/PHP/delete_songs.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Backend/PHP/gestionar.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Backend/PHP/update_playlist_order.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Frontend/JS/canciones_gestionar.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Frontend/JS/playlist_sort.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Frontend/img/icons/altavoz.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Frontend/img/icons/arrastrar.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Frontend/img/icons/gestionar_icon.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Frontend/img/noselected.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Frontend/img/portada_102.jpeg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Frontend/img/portada_107.jpeg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Backend/PHP/busqueda.php" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/PHP/busqueda.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Backend/PHP/crear_playlist.php" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/PHP/crear_playlist.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Backend/PHP/crear_playlist_html.php" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/PHP/crear_playlist_html.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Backend/PHP/editar_playlist.php" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/PHP/editar_playlist.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Backend/PHP/eliminar_playlist.php" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/PHP/eliminar_playlist.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Backend/PHP/estadisticas.php" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/PHP/estadisticas.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Backend/PHP/favoritos.php" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/PHP/favoritos.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Backend/PHP/get_playlist.php" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/PHP/get_playlist.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Backend/PHP/get_playlists.php" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/PHP/get_playlists.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Backend/PHP/historial.php" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/PHP/historial.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Backend/PHP/index.php" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/PHP/index.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Backend/PHP/library.php" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/PHP/library.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Backend/PHP/login.php" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/PHP/login.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Backend/PHP/playlist.php" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/PHP/playlist.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Frontend/CSS/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/CSS/style.css" afterDir="false" />
-    </list>
+    <list default="true" id="c9152341-407a-4a3b-beb9-0391ef619cfd" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -81,7 +52,7 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.git.unshallow": "true",
     "com.codeium.enabled": "true",
-    "git-widget-placeholder": "feature/Camaron__CamaronDeLaIsla__Frontend",
+    "git-widget-placeholder": "main",
     "last_opened_file_path": "C:/Program Files/xampp/htdocs/Proyecto-Desarrollo-WEB-y-de-Apps/Backend/PHP",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
@@ -127,7 +98,7 @@
       <workItem from="1767183169887" duration="4454000" />
       <workItem from="1767199210998" duration="28406000" />
       <workItem from="1767529778542" duration="13890000" />
-      <workItem from="1767789291814" duration="15556000" />
+      <workItem from="1767789291814" duration="15739000" />
     </task>
     <servers />
   </component>
