@@ -1,0 +1,93 @@
+Index: Frontend/JS/canciones_crear_playlist.js
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>// 1. Cargar canciones desde la BD\r\ndocument.addEventListener(\"DOMContentLoaded\", function () {\r\n    fetch(\"../../Backend/PHP/get_canciones.php\")\r\n        .then(response => response.json())\r\n        .then(data => {\r\n            if (!Array.isArray(data)) {\r\n                console.error(\"Respuesta inesperada del servidor:\", data);\r\n                return;\r\n            }\r\n\r\n            const select = document.getElementById(\"canciones\");\r\n\r\n            data.forEach(cancion => {\r\n                const option = document.createElement(\"option\");\r\n                option.value = cancion.id;\r\n                option.textContent = cancion.titulo;\r\n                select.appendChild(option);\r\n            });\r\n        })\r\n        .catch(error => console.error(\"Error cargando canciones:\", error));\r\n});\r\n\r\n// 2. Enviar formulario y crear la playlist\r\ndocument.getElementById(\"formPlaylist\").addEventListener(\"submit\", function (e) {\r\n    e.preventDefault(); // evita recargar la página\r\n\r\n    const form = e.target;\r\n    const formData = new FormData(form);\r\n\r\n    fetch(\"../../Backend/PHP/crear_playlist.php\", {\r\n    method: \"POST\",\r\n    body: formData\r\n    })\r\n    .then(response => response.json())\r\n    .then(data => {\r\n        console.log(\"Respuesta del servidor:\", data);\r\n\r\n        if (data.status === \"success\") {\r\n            window.location.href = \"../../Backend/PHP/library.php\";\r\n        } else {\r\n            alert(\"❌ \" + (data.message || \"Hubo un problema al crear la playlist\"));\r\n        }\r\n    })\r\n    .catch(error => {\r\n        console.error(\"Error al crear la playlist:\", error);\r\n        alert(\"❌ Error al guardar la playlist\");\r\n    });\r\n});
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/Frontend/JS/canciones_crear_playlist.js b/Frontend/JS/canciones_crear_playlist.js
+--- a/Frontend/JS/canciones_crear_playlist.js	(revision 8efe82ceb6364e1b3078d49861aae2d57d2e6272)
++++ b/Frontend/JS/canciones_crear_playlist.js	(date 1767912738351)
+@@ -38,11 +38,11 @@
+         if (data.status === "success") {
+             window.location.href = "../../Backend/PHP/library.php";
+         } else {
+-            alert("❌ " + (data.message || "Hubo un problema al crear la playlist"));
++            alert((data.message || "Hubo un problema al crear la playlist"));
+         }
+     })
+     .catch(error => {
+         console.error("Error al crear la playlist:", error);
+-        alert("❌ Error al guardar la playlist");
++        alert("Error al guardar la playlist");
+     });
+ });
+\ No newline at end of file
+Index: Backend/PHP/login.php
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?php\r\nsession_start();\r\nrequire_once __DIR__ . \"/db.php\"; \r\n\r\nif ($_SERVER[\"REQUEST_METHOD\"] === \"POST\") {\r\n\r\n    $input = trim($_POST[\"email\"] ?? \"\");\r\n    $password = trim($_POST[\"password\"] ?? \"\");\r\n    $remember = isset($_POST['remember']);\r\n\r\n    if (empty($input) || empty($password)) {\r\n        echo json_encode([\"status\" => \"error\", \"message\" => \"Rellena todos los campos.\"]);\r\n        exit;\r\n    }\r\n\r\n    // Buscar por email o usuario\r\n    $sql = \"SELECT id, usuario, email, password, rol FROM users\r\n            WHERE email = :input OR usuario = :input LIMIT 1\";\r\n\r\n    $stmt = $pdo->prepare($sql);\r\n    $stmt->execute([\"input\" => $input]);\r\n    $user = $stmt->fetch(PDO::FETCH_ASSOC);\r\n\r\n    if (!$user) {\r\n        echo json_encode([\"status\" => \"error\", \"message\" => \"Usuario o email no encontrado.\"]);\r\n        exit;\r\n    }\r\n\r\n    if (!password_verify($password, $user[\"password\"])) {\r\n        echo json_encode([\"status\" => \"error\", \"message\" => \"Contraseña incorrecta.\"]);\r\n        exit;\r\n    }\r\n\r\n    // Login correcto\r\n    $_SESSION[\"user_id\"] = $user[\"id\"];\r\n    $_SESSION[\"usuario\"] = $user[\"usuario\"];\r\n    $_SESSION[\"rol\"] = $user[\"rol\"];\r\n\r\n    if ($remember) {\r\n        setcookie(\r\n            \"remember_user\",\r\n            $user[\"id\"],\r\n            time() + (60 * 60 * 24 * 30),\r\n            \"/\"\r\n        );\r\n    }\r\n\r\n    echo json_encode([\"status\" => \"success\"]);\r\n    exit;\r\n}\r\n?>\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/Backend/PHP/login.php b/Backend/PHP/login.php
+--- a/Backend/PHP/login.php	(revision 8efe82ceb6364e1b3078d49861aae2d57d2e6272)
++++ b/Backend/PHP/login.php	(date 1767908406635)
+@@ -13,7 +13,6 @@
+         exit;
+     }
+ 
+-    // Buscar por email o usuario
+     $sql = "SELECT id, usuario, email, password, rol FROM users
+             WHERE email = :input OR usuario = :input LIMIT 1";
+ 
+Index: .idea/workspace.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<project version=\"4\">\r\n  <component name=\"AutoImportSettings\">\r\n    <option name=\"autoReloadType\" value=\"SELECTIVE\" />\r\n  </component>\r\n  <component name=\"ChangeListManager\">\r\n    <list default=\"true\" id=\"c9152341-407a-4a3b-beb9-0391ef619cfd\" name=\"Changes\" comment=\"\">\r\n      <change afterPath=\"$PROJECT_DIR$/Backend/music/audio_119.mp3\" afterDir=\"false\" />\r\n      <change afterPath=\"$PROJECT_DIR$/Backend/music/audio_120.mp3\" afterDir=\"false\" />\r\n      <change afterPath=\"$PROJECT_DIR$/Backend/music/audio_121.mp3\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/.idea/workspace.xml\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/.idea/workspace.xml\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/Backend/PHP/busqueda.php\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/Backend/PHP/busqueda.php\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/Backend/PHP/estadisticas.php\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/Backend/PHP/estadisticas.php\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/Backend/PHP/favoritos.php\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/Backend/PHP/favoritos.php\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/Backend/PHP/gestionar.php\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/Backend/PHP/gestionar.php\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/Backend/PHP/historial.php\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/Backend/PHP/historial.php\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/Backend/PHP/index.php\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/Backend/PHP/index.php\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/Backend/PHP/library.php\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/Backend/PHP/library.php\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/Backend/PHP/playlist.php\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/Backend/PHP/playlist.php\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/Frontend/CSS/style.css\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/Frontend/CSS/style.css\" afterDir=\"false\" />\r\n    </list>\r\n    <option name=\"SHOW_DIALOG\" value=\"false\" />\r\n    <option name=\"HIGHLIGHT_CONFLICTS\" value=\"true\" />\r\n    <option name=\"HIGHLIGHT_NON_ACTIVE_CHANGELIST\" value=\"false\" />\r\n    <option name=\"LAST_RESOLUTION\" value=\"IGNORE\" />\r\n  </component>\r\n  <component name=\"FileTemplateManagerImpl\">\r\n    <option name=\"RECENT_TEMPLATES\">\r\n      <list>\r\n        <option value=\"HTML File\" />\r\n        <option value=\"JavaScript File\" />\r\n      </list>\r\n    </option>\r\n  </component>\r\n  <component name=\"Git.Settings\">\r\n    <option name=\"RECENT_BRANCH_BY_REPOSITORY\">\r\n      <map>\r\n        <entry key=\"$PROJECT_DIR$\" value=\"feature/David_DavidNovoR_Frontend_Backend\" />\r\n      </map>\r\n    </option>\r\n    <option name=\"RECENT_GIT_ROOT_PATH\" value=\"$PROJECT_DIR$\" />\r\n  </component>\r\n  <component name=\"GitHubPullRequestSearchHistory\">{\r\n  &quot;lastFilter&quot;: {\r\n    &quot;state&quot;: &quot;OPEN&quot;,\r\n    &quot;assignee&quot;: &quot;camaron-de-la-isla&quot;\r\n  }\r\n}</component>\r\n  <component name=\"GithubPullRequestsUISettings\">{\r\n  &quot;selectedUrlAndAccountId&quot;: {\r\n    &quot;url&quot;: &quot;https://github.com/DavidNovoR/Proyecto-Desarrollo-WEB-y-de-Apps.git&quot;,\r\n    &quot;accountId&quot;: &quot;6a6f27ca-2794-4ac0-ac9a-749a93b45977&quot;\r\n  }\r\n}</component>\r\n  <component name=\"ProjectColorInfo\">{\r\n  &quot;associatedIndex&quot;: 7\r\n}</component>\r\n  <component name=\"ProjectId\" id=\"36ppcRMDGkZyoQslZyZI5YYQHgJ\" />\r\n  <component name=\"ProjectViewState\">\r\n    <option name=\"hideEmptyMiddlePackages\" value=\"true\" />\r\n    <option name=\"showLibraryContents\" value=\"true\" />\r\n  </component>\r\n  <component name=\"PropertiesComponent\">{\r\n  &quot;keyToString&quot;: {\r\n    &quot;DefaultHtmlFileTemplate&quot;: &quot;HTML File&quot;,\r\n    &quot;Node.js.volume_line.js.executor&quot;: &quot;Run&quot;,\r\n    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,\r\n    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,\r\n    &quot;com.codeium.enabled&quot;: &quot;true&quot;,\r\n    &quot;git-widget-placeholder&quot;: &quot;main&quot;,\r\n    &quot;last_opened_file_path&quot;: &quot;C:/Program Files/xampp/htdocs/Proyecto-Desarrollo-WEB-y-de-Apps/Backend/PHP&quot;,\r\n    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,\r\n    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,\r\n    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,\r\n    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,\r\n    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,\r\n    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;\r\n  }\r\n}</component>\r\n  <component name=\"RecentsManager\">\r\n    <key name=\"CopyFile.RECENT_KEYS\">\r\n      <recent name=\"C:\\Program Files\\xampp\\htdocs\\Proyecto-Desarrollo-WEB-y-de-Apps\\Backend\\PHP\" />\r\n      <recent name=\"C:\\Program Files\\xampp\\htdocs\\Proyecto-Desarrollo-WEB-y-de-Apps\\Frontend\\HTML\" />\r\n      <recent name=\"C:\\Users\\sergio\\WebstormProjects\\Proyecto-Desarrollo-WEB-y-de-Apps\\Frontend\" />\r\n    </key>\r\n    <key name=\"MoveFile.RECENT_KEYS\">\r\n      <recent name=\"C:\\Program Files\\xampp\\htdocs\\Proyecto-Desarrollo-WEB-y-de-Apps\\Backend\\PHP\" />\r\n      <recent name=\"C:\\Program Files\\xampp\\htdocs\\Proyecto-Desarrollo-WEB-y-de-Apps\\Frontend\\HTML\" />\r\n      <recent name=\"C:\\Users\\sergio\\WebstormProjects\\Proyecto-Desarrollo-WEB-y-de-Apps\\Frontend\\img\\icons\" />\r\n      <recent name=\"C:\\Users\\sergio\\WebstormProjects\\Proyecto-Desarrollo-WEB-y-de-Apps\\Frontend\\img\" />\r\n      <recent name=\"C:\\Users\\sergio\\WebstormProjects\\Proyecto-Desarrollo-WEB-y-de-Apps\\Frontend\" />\r\n    </key>\r\n  </component>\r\n  <component name=\"SharedIndexes\">\r\n    <attachedChunks>\r\n      <set>\r\n        <option value=\"bundled-js-predefined-d6986cc7102b-1632447f56bf-JavaScript-WS-243.26053.12\" />\r\n      </set>\r\n    </attachedChunks>\r\n  </component>\r\n  <component name=\"SpellCheckerSettings\" RuntimeDictionaries=\"0\" Folders=\"0\" CustomDictionaries=\"0\" DefaultDictionary=\"application-level\" UseSingleDictionary=\"true\" transferred=\"true\" />\r\n  <component name=\"TaskManager\">\r\n    <task active=\"true\" id=\"Default\" summary=\"Default task\">\r\n      <changelist id=\"c9152341-407a-4a3b-beb9-0391ef619cfd\" name=\"Changes\" comment=\"\" />\r\n      <created>1765713445339</created>\r\n      <option name=\"number\" value=\"Default\" />\r\n      <option name=\"presentableId\" value=\"Default\" />\r\n      <updated>1765713445339</updated>\r\n      <workItem from=\"1765713446521\" duration=\"16515000\" />\r\n      <workItem from=\"1766397267487\" duration=\"1391000\" />\r\n      <workItem from=\"1766860829602\" duration=\"784000\" />\r\n      <workItem from=\"1767086278382\" duration=\"8271000\" />\r\n      <workItem from=\"1767183169887\" duration=\"4454000\" />\r\n      <workItem from=\"1767199210998\" duration=\"28406000\" />\r\n      <workItem from=\"1767529778542\" duration=\"13890000\" />\r\n      <workItem from=\"1767789291814\" duration=\"24441000\" />\r\n    </task>\r\n    <servers />\r\n  </component>\r\n  <component name=\"TypeScriptGeneratedFilesManager\">\r\n    <option name=\"version\" value=\"3\" />\r\n  </component>\r\n</project>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/workspace.xml b/.idea/workspace.xml
+--- a/.idea/workspace.xml	(revision 8efe82ceb6364e1b3078d49861aae2d57d2e6272)
++++ b/.idea/workspace.xml	(date 1767912738909)
+@@ -5,19 +5,9 @@
+   </component>
+   <component name="ChangeListManager">
+     <list default="true" id="c9152341-407a-4a3b-beb9-0391ef619cfd" name="Changes" comment="">
+-      <change afterPath="$PROJECT_DIR$/Backend/music/audio_119.mp3" afterDir="false" />
+-      <change afterPath="$PROJECT_DIR$/Backend/music/audio_120.mp3" afterDir="false" />
+-      <change afterPath="$PROJECT_DIR$/Backend/music/audio_121.mp3" afterDir="false" />
+       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/Backend/PHP/busqueda.php" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/PHP/busqueda.php" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/Backend/PHP/estadisticas.php" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/PHP/estadisticas.php" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/Backend/PHP/favoritos.php" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/PHP/favoritos.php" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/Backend/PHP/gestionar.php" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/PHP/gestionar.php" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/Backend/PHP/historial.php" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/PHP/historial.php" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/Backend/PHP/index.php" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/PHP/index.php" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/Backend/PHP/library.php" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/PHP/library.php" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/Backend/PHP/playlist.php" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/PHP/playlist.php" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/Frontend/CSS/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/CSS/style.css" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/Backend/PHP/login.php" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/PHP/login.php" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/Frontend/JS/canciones_crear_playlist.js" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/JS/canciones_crear_playlist.js" afterDir="false" />
+     </list>
+     <option name="SHOW_DIALOG" value="false" />
+     <option name="HIGHLIGHT_CONFLICTS" value="true" />
+@@ -35,7 +25,7 @@
+   <component name="Git.Settings">
+     <option name="RECENT_BRANCH_BY_REPOSITORY">
+       <map>
+-        <entry key="$PROJECT_DIR$" value="feature/David_DavidNovoR_Frontend_Backend" />
++        <entry key="$PROJECT_DIR$" value="docs" />
+       </map>
+     </option>
+     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+@@ -113,7 +103,7 @@
+       <workItem from="1767183169887" duration="4454000" />
+       <workItem from="1767199210998" duration="28406000" />
+       <workItem from="1767529778542" duration="13890000" />
+-      <workItem from="1767789291814" duration="24441000" />
++      <workItem from="1767789291814" duration="29422000" />
+     </task>
+     <servers />
+   </component>
