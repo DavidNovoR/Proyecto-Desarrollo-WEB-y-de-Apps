@@ -38,11 +38,11 @@ document.getElementById("formPlaylist").addEventListener("submit", function (e) 
         if (data.status === "success") {
             window.location.href = "../../Backend/PHP/library.php";
         } else {
-            alert((data.message || "Hubo un problema al crear la playlist"));
+            alert("❌ " + (data.message || "Hubo un problema al crear la playlist"));
         }
     })
     .catch(error => {
         console.error("Error al crear la playlist:", error);
-        alert("Error al guardar la playlist");
+        alert("❌ Error al guardar la playlist");
     });
 });

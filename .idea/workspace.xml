@@ -5,19 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="c9152341-407a-4a3b-beb9-0391ef619cfd" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/Backend/music/audio_119.mp3" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Backend/music/audio_120.mp3" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Backend/music/audio_121.mp3" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Backend/PHP/busqueda.php" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/PHP/busqueda.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Backend/PHP/estadisticas.php" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/PHP/estadisticas.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Backend/PHP/favoritos.php" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/PHP/favoritos.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Backend/PHP/gestionar.php" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/PHP/gestionar.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Backend/PHP/historial.php" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/PHP/historial.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Backend/PHP/index.php" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/PHP/index.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Backend/PHP/library.php" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/PHP/library.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Backend/PHP/playlist.php" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/PHP/playlist.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Frontend/CSS/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/CSS/style.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Backend/PHP/login.php" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/PHP/login.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Frontend/JS/canciones_crear_playlist.js" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/JS/canciones_crear_playlist.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -35,7 +25,7 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="feature/David_DavidNovoR_Frontend_Backend" />
+        <entry key="$PROJECT_DIR$" value="docs" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -113,7 +103,7 @@
       <workItem from="1767183169887" duration="4454000" />
       <workItem from="1767199210998" duration="28406000" />
       <workItem from="1767529778542" duration="13890000" />
-      <workItem from="1767789291814" duration="24441000" />
+      <workItem from="1767789291814" duration="29422000" />
     </task>
     <servers />
   </component>

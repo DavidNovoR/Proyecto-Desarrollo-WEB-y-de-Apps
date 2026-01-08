@@ -13,6 +13,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         exit;
     }
 
+    // Buscar por email o usuario
     $sql = "SELECT id, usuario, email, password, rol FROM users
             WHERE email = :input OR usuario = :input LIMIT 1";
 
