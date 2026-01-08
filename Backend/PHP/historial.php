@@ -37,7 +37,7 @@ $historial = $stmt->fetchAll(PDO::FETCH_ASSOC);
   <nav class="navbar">
       <button class="menu-toggle" onclick="toggleSidebar()">☰</button>
 
-      <a href="index.php">
+      <a href="index.php" class="logo-link">
           <img class="logo_img" src="../../Frontend/img/logo_app.png" alt="">
       </a>
 
@@ -105,6 +105,11 @@ $historial = $stmt->fetchAll(PDO::FETCH_ASSOC);
 <footer>
   <p>© 2025-2026 PlayListApp - Proyecto académico</p>
 </footer>
-
+<script>
+function toggleSidebar() {
+    const sidebar = document.querySelector('.sidebar');
+    sidebar.classList.toggle('active');
+}
+</script>
 </body>
 </html>

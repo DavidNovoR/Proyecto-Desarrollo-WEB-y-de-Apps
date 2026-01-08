@@ -57,6 +57,15 @@ $favoritas = $stmtFav->fetchAll(PDO::FETCH_COLUMN);
       <li><a href="library.php"><img src="../../Frontend/img/icons/library_music_icon.png"> Mi Biblioteca</a></li>
       <li><a href="favoritos.php"><img src="../../Frontend/img/icons/favorite_icon.png"> Favoritos</a></li>
       <li><a href="../../Frontend/HTML/estadisticas.html"><img src="../../Frontend/img/icons/analytics_icon.png"> Estadísticas</a></li>
+      <li><a href="historial.php"><img src="../../Frontend/img/icons/history_icon.png" alt="icono de historial">  Historial</a></li>
+      <?php if (isset($_SESSION["rol"]) && $_SESSION["rol"] === "admin"): ?>
+                          <li class="sidebar-admin">
+                            <a href="gestionar.php">
+                              <img src="../../Frontend/img/icons/gestionar_icon.png">
+                              Gestionar
+                            </a>
+                          </li>
+                      <?php endif; ?>
     </ul>
   </aside>
 
@@ -116,25 +125,37 @@ $favoritas = $stmtFav->fetchAll(PDO::FETCH_COLUMN);
 
   <!-- REPRODUCTOR -->
   <div class="audio-player">
-    <img src="../../Frontend/img/logo_app.png" class="player-cover">
-    <div class="player-info">
-      <h4>Título</h4>
-      <p>Artista</p>
-    </div>
-    <div class="player-controls">
-      <button class="player-prev"><img src="../../Frontend/img/icons/previous_song_icon.png"></button>
-      <button class="player-play"><img class="player-play-icon" src="../../Frontend/img/icons/play_circle_icon.png"></button>
-      <button class="player-next"><img src="../../Frontend/img/icons/next_song_icon.png"></button>
-    </div>
-    <div class="player-progress">
-      <span id="current-time">0:00</span>
-      <input type="range" id="progress-bar" min="0" max="100" value="0">
-      <span id="total-time">0:00</span>
-      <div class="player-volume">
-        <input type="range" id="volume-bar" min="0" max="100" value="80">
+      <img src="../../Frontend/img/logo_app.png" alt="Portada" class="player-cover">
+      <div class="player-info">
+        <h4></h4>
+        <p></p>
+      </div>
+      <div class="player-controls">
+        <button class="player-prev">
+          <img src="../../Frontend/img/icons/previous_song_icon.png" alt="">
+        </button>
+        <button class="player-play">
+          <img class="player-play-icon" src="../../Frontend/img/icons/play_circle_icon.png" alt="">
+        </button>
+        <button class="player-next">
+          <img src="../../Frontend/img/icons/next_song_icon.png" alt="">
+        </button>
+      </div>
+      <div class="player-progress">
+        <span id="current-time">0:00</span>
+        <input type="range" id="progress-bar" min="0" max="100" value="0">
+        <span id="total-time">0:00</span>
+        <img
+          class="volume-icon"
+          src='../../Frontend/img/icons/altavoz.png'
+          alt='altavoz'
+          style="cursor:pointer;"
+        >
+        <div class="player-volume">
+          <input type="range" id="volume-bar" min="0" max="100" value="80">
+        </div>
       </div>
     </div>
-  </div>
 
   <!-- FOOTER -->
   <footer>
@@ -156,4 +177,4 @@ $favoritas = $stmtFav->fetchAll(PDO::FETCH_COLUMN);
 
   <script src="../../Frontend/JS/player.js"></script>
   <script src="../../Frontend/JS/like.js"></script>
-  <script src="../../Frontend/JS/audio_line.js"></
+  <script src="../../Frontend/JS/audio_line.js"></script>

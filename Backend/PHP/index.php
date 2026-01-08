@@ -14,9 +14,9 @@ $data = require(__DIR__ . '/get_playlists.php');
 $playlist = $data['playlists'];
 
 $mapa_generos = [];
-foreach ($playlist as $p) { 
-    $nombre = strtolower(trim($p['nombre'])); 
-    $mapa_generos[$nombre] = $p['id']; 
+foreach ($playlist as $p) {
+    $nombre = strtolower(trim($p['nombre']));
+    $mapa_generos[$nombre] = $p['id'];
 }
 
 $playlists = array_slice($playlists, 0, 4);
@@ -129,28 +129,6 @@ $favoritas = $stmtFav->fetchAll(PDO::FETCH_COLUMN);
         </div>
       <?php endforeach; ?>
     </div>
-      <h2>Playlists Recomendadas</h2>
-      <div class="song-list">
-        <div class="song-card">
-          <img src="../../Frontend/img/logo_app.png" alt="Portada álbum" />
-          <div class="song-info">
-            <h3>Título de la canción</h3>
-            <p>Artista • Álbum</p>
-            <p>Reproducciones: 1234</p>
-          </div>
-        </div>
-      </div>
-      <h2>Canciones Recomendadas</h2>
-      <div class="song-list">
-        <div class="song-card">
-          <img src="../../Frontend/img/logo_app.png" alt="Portada álbum" />
-          <div class="song-info">
-            <h3>Título de la canción</h3>
-            <p>Artista • Álbum</p>
-            <p>Reproducciones: 1234</p>
-          </div>
-        </div>
-      </div>
     </section>
   </main>
 
@@ -175,7 +153,12 @@ $favoritas = $stmtFav->fetchAll(PDO::FETCH_COLUMN);
       <span id="current-time">0:00</span>
       <input type="range" id="progress-bar" min="0" max="100" value="0">
       <span id="total-time">0:00</span>
-      <img src='../../Frontend/img/icons/altavoz.png' alt='altavoz'>
+      <img
+        class="volume-icon"
+        src='../../Frontend/img/icons/altavoz.png'
+        alt='altavoz'
+        style="cursor:pointer;"
+      >
       <div class="player-volume">
         <input type="range" id="volume-bar" min="0" max="100" value="80">
       </div>
@@ -192,8 +175,8 @@ $favoritas = $stmtFav->fetchAll(PDO::FETCH_COLUMN);
         sidebar.classList.toggle('active');
     }
   </script>
-  <script> 
-    const songList = <?= json_encode($canciones, JSON_UNESCAPED_UNICODE) ?>; 
+  <script>
+    const songList = <?= json_encode($canciones, JSON_UNESCAPED_UNICODE) ?>;
   </script>
   <script src="../../Frontend/JS/history.js"></script>
   <script src="../../Frontend/JS/player.js"></script>

@@ -1050,6 +1050,7 @@ form label{
         padding: 0.7rem;
         font-size: 0.8rem;
     }
+
 }
 
 /*Historial*/
@@ -1134,6 +1135,11 @@ form label{
 }
 
 .song-card-large .drag-handle img {
+    width: 18px;
+    height: 18px;
+}
+
+.volume-icon {
     width: 18px;
     height: 18px;
 }

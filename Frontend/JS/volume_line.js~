@@ -1,0 +1,35 @@
+const volumeBar = document.getElementById('volume-bar');
+const volumeIcon = document.getElementsByClassName('volume-icon').item(0);
+
+let lastVolume = volumeBar.value; // guardar último volumen
+let isMuted = false;
+
+// Slider de volumen
+volumeBar.addEventListener('input', () => {
+    const volumeValue = volumeBar.value / 100;
+    playerAudio.volume = volumeValue;
+
+    // Si sube el volumen manualmente, quitamos mute
+    if (volumeValue > 0) {
+        isMuted = false;
+        volumeIcon.src = "../../Frontend/img/icons/altavoz.png";
+    }
+});
+
+// Click en el icono del altavoz
+volumeIcon.addEventListener('click', () => {
+    if (!isMuted) {
+        // Mutear
+        lastVolume = volumeBar.value;
+        volumeBar.value = 0;
+        playerAudio.volume = 0;
+        volumeIcon.src = "../../Frontend/img/icons/mute_icon.png";
+        isMuted = true;
+    } else {
+        // Desmutear
+        volumeBar.value = lastVolume || 80;
+        playerAudio.volume = volumeBar.value / 100;
+        volumeIcon.src = "../../Frontend/img/icons/altavoz.png";
+        isMuted = false;
+    }
+});

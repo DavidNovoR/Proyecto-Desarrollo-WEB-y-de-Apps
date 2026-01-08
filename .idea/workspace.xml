@@ -4,7 +4,21 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c9152341-407a-4a3b-beb9-0391ef619cfd" name="Changes" comment="" />
+    <list default="true" id="c9152341-407a-4a3b-beb9-0391ef619cfd" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/Backend/music/audio_119.mp3" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Backend/music/audio_120.mp3" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Backend/music/audio_121.mp3" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Backend/PHP/busqueda.php" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/PHP/busqueda.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Backend/PHP/estadisticas.php" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/PHP/estadisticas.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Backend/PHP/favoritos.php" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/PHP/favoritos.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Backend/PHP/gestionar.php" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/PHP/gestionar.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Backend/PHP/historial.php" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/PHP/historial.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Backend/PHP/index.php" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/PHP/index.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Backend/PHP/library.php" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/PHP/library.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Backend/PHP/playlist.php" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/PHP/playlist.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Frontend/CSS/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/CSS/style.css" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -46,22 +60,23 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "DefaultHtmlFileTemplate": "HTML File",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "com.codeium.enabled": "true",
-    "git-widget-placeholder": "main",
-    "last_opened_file_path": "C:/Program Files/xampp/htdocs/Proyecto-Desarrollo-WEB-y-de-Apps/Backend/PHP",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;DefaultHtmlFileTemplate&quot;: &quot;HTML File&quot;,
+    &quot;Node.js.volume_line.js.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;com.codeium.enabled&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Program Files/xampp/htdocs/Proyecto-Desarrollo-WEB-y-de-Apps/Backend/PHP&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Program Files\xampp\htdocs\Proyecto-Desarrollo-WEB-y-de-Apps\Backend\PHP" />
@@ -98,7 +113,7 @@
       <workItem from="1767183169887" duration="4454000" />
       <workItem from="1767199210998" duration="28406000" />
       <workItem from="1767529778542" duration="13890000" />
-      <workItem from="1767789291814" duration="15739000" />
+      <workItem from="1767789291814" duration="24441000" />
     </task>
     <servers />
   </component>
