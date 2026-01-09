@@ -120,6 +120,16 @@ CREATE TABLE `history` (
 INSERT INTO `users` (`usuario`, `password`, `nombre`, `email`, `rol`) VALUES
 ('admin', '$2y$10$abcdefghijklmnopqrstuv1234567890abcdefghi', 'Administrador', 'admin@demo.com', 'admin');
 
+-- Crear playlists automáticas por el admin basadas en géneros
+INSERT INTO playlists (user_id, nombre, descripcion, visibilidad)
+VALUES
+(1, 'pop', 'pop', 'publica'),
+(1, 'rock', 'rock', 'publica'),
+(1, 'metal', 'metal', 'publica'),
+(1, 'otros', 'otros', 'publica'),
+(1, 'classical', 'classical', 'publica'),
+(1, 'choral', 'choral', 'publica');
+
 COMMIT;
 
 -- Adminsitrador:
